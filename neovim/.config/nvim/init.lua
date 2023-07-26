@@ -1,2 +1,2 @@
--- Bootstrap lazy.nvim, LazyVim, and your plugins
+-- bootstrap lazy.nvim, lazyvim, and your plugins
 require("config.lazy")
