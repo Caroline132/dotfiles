@@ -125,3 +125,5 @@ export PATH="$PATH:/home/tippinsc/.local/share/bob/nvim-bin"
 
 alias k='kubectl'
 alias g='git'
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+set -o vi
