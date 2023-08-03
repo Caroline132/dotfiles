@@ -127,3 +127,5 @@ alias k='kubectl'
 alias g='git'
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 set -o vi
+export PATH="$HOME/.local/bin:$PATH"
+eval "$(zoxide init bash)"
