@@ -125,7 +125,9 @@ export PATH="$PATH:/home/tippinsc/.local/share/bob/nvim-bin"
 
 alias k='kubectl'
 alias g='git'
+alias t='tmuxinator'
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 set -o vi
 export PATH="$HOME/.local/bin:$PATH"
 eval "$(zoxide init bash)"
+export EDITOR='nvim'
