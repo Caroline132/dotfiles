@@ -1,0 +1,16 @@
+# ~/.tmuxinator/work.yml
+
+name: code-work
+root: ~/Projects
+
+windows:
+  - automation:
+      layout: even-horizontal
+      panes:
+              - automation:
+                - cd ~/repos/Automation/
+  - argo-platform:
+      layout: even-horizontal
+      panes:
+              - argo-platform:
+                - cd ~/repos/ArgoPlatform/
