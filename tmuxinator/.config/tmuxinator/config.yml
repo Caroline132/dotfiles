@@ -1,0 +1,12 @@
+# ~/.tmuxinator/config.yml
+
+name: config
+
+windows:
+  - config:
+      layout: tiled
+      panes:
+        - cd ~/dotfiles
+        - cd ~/dotfiles
+        - cd ~/dotfiles
+        - cd ~/dotfiles
