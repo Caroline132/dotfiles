@@ -119,9 +119,8 @@ fi
 
 eval "$(starship init bash)"
 
-. "$HOME/.cargo/env"
 cd ~
-export PATH="$PATH:/home/tippinsc/.local/share/bob/nvim-bin"
+export PATH="$PATH:/home/caro/.local/share/bob/nvim-bin"
 
 alias k='kubectl'
 alias g='git'
