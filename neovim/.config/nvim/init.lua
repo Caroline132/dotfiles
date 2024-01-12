@@ -65,6 +65,9 @@ vim.o.softtabstop = 4
 vim.o.shiftwidth = 4
 vim.o.expandtab = true
 
+-- Disable swapfile
+vim.o.swapfile = false
+
 -- Enable mouse mode
 vim.o.mouse = 'a'
 
