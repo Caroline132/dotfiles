@@ -47,6 +47,9 @@ require('lazy').setup({
       -- Additional lua configuration, makes nvim stuff amazing!
       'folke/neodev.nvim',
     },
+    config = function()
+      require("plugin-configs.lsp")
+    end,
   },
 
   {
@@ -64,6 +67,9 @@ require('lazy').setup({
       -- Adds a number of user-friendly snippets
       'rafamadriz/friendly-snippets',
     },
+    config = function()
+      require("plugin-configs.neo-tree")
+    end,
   },
 
   -- Useful plugin to show you pending keybinds.
@@ -197,6 +203,9 @@ require('lazy').setup({
         end,
       },
     },
+    config = function()
+      require("plugin-configs.telescope-config")
+    end,
   },
 
   {
@@ -206,6 +215,9 @@ require('lazy').setup({
       'nvim-treesitter/nvim-treesitter-textobjects',
     },
     build = ':TSUpdate',
+    config = function()
+      require("plugin-configs.nvim-treesitter")
+    end,
   },
 
   {
@@ -216,7 +228,10 @@ require('lazy').setup({
       "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
       "MunifTanjim/nui.nvim",
       -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
-    }
+    },
+    config = function()
+      require("plugin-configs.neo-tree")
+    end,
   }
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
