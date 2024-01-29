@@ -151,7 +151,7 @@ require("neo-tree").setup({
       --  config = {
       --    show_path = "none" -- "none", "relative", "absolute"
       --  }
-      --}
+     --}
       ["m"] = "move", -- takes text input for destination, also accepts the optional config.show_path option like "add".
       ["q"] = "close_window",
       ["R"] = "refresh",
@@ -281,5 +281,7 @@ vim.cmd([[nnoremap \ :Neotree reveal<cr>]])
 require('which-key').register {
   ['<leader>n'] = { name = '[N]eotree', _ = 'which_key_ignore' },
 }
-vim.keymap.set({ "n" }, "<leader>nt", "<cmd>Neotree show toggle left<cr>", { desc = "Neotree toggle" })
-vim.keymap.set({ "n" }, "<leader>nf", "<cmd>Neotree filesystem float reveal toggle<cr>", { desc = "Neotree floating" })
+vim.keymap.set({ "n" }, "<leader>nt", "<cmd>Neotree show toggle<cr>", { desc = "Neotree filesystem toggle" })
+vim.keymap.set({ "n" }, "<leader>nb", "<cmd>Neotree show buffers toggle<cr>", { desc = "Neotree buffers toggle" })
+vim.keymap.set({ "n" }, "<leader>ng", "<cmd>Neotree show git_status toggle<cr>", { desc = "Neotree git_status toggle" })
+vim.keymap.set({ "n" }, "<leader>nf", "<cmd>Neotree focus toggle<cr>", { desc = "Neotree focus" })
