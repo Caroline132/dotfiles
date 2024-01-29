@@ -58,13 +58,13 @@ vim.o.splitbelow = true
 vim.o.splitright = true
 
 -- Remove wrap
-vim.o.wrap = false
+-- vim.o.wrap = false
 
 -- Set clipboard to system's
 vim.o.clipboard = "unnamedplus"
 
 -- Keep cursor in middle
-vim.opt.scrolloff = 999
+--vim.opt.scrolloff = 999
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
