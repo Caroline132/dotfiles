@@ -68,7 +68,7 @@ require('lazy').setup({
       'rafamadriz/friendly-snippets',
     },
     config = function()
-      require("plugin-configs.neo-tree")
+      require("plugin-configs.nvim-cmp")
     end,
   },
 
