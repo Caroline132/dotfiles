@@ -108,8 +108,8 @@ require("neo-tree").setup({
       nowait = true,
     },
     mappings = {
-      ["<space>"] = { 
-        "toggle_node", 
+      ["<space>"] = {
+        "toggle_node",
         nowait = false, -- disable `nowait` if you have existing combos starting with this char that you want to use 
       },
       ["<2-LeftMouse>"] = "open",
@@ -131,7 +131,7 @@ require("neo-tree").setup({
       -- ['C'] = 'close_all_subnodes',
       ["z"] = "close_all_nodes",
       --["Z"] = "expand_all_nodes",
-      ["a"] = { 
+      ["a"] = {
         "add",
         -- this command supports BASH style brace expansion ("x{a,b,c}" -> xa,xb,xc). see `:h neo-tree-file-actions` for details
         -- some commands may take optional config options, see `:h neo-tree-mappings` for details
@@ -282,6 +282,4 @@ require('which-key').register {
   ['<leader>n'] = { name = '[N]eotree', _ = 'which_key_ignore' },
 }
 vim.keymap.set({ "n" }, "<leader>nt", "<cmd>Neotree show toggle<cr>", { desc = "Neotree filesystem toggle" })
-vim.keymap.set({ "n" }, "<leader>nb", "<cmd>Neotree show buffers toggle<cr>", { desc = "Neotree buffers toggle" })
-vim.keymap.set({ "n" }, "<leader>ng", "<cmd>Neotree show git_status toggle<cr>", { desc = "Neotree git_status toggle" })
 vim.keymap.set({ "n" }, "<leader>nf", "<cmd>Neotree focus toggle<cr>", { desc = "Neotree focus" })
