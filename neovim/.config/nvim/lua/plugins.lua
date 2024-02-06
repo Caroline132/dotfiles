@@ -244,5 +244,11 @@ require('lazy').setup({
       require("plugin-configs.bufferline")
     end,
   },
+  {
+    "lewis6991/gitsigns.nvim",
+    config = function()
+      require("plugin-configs.gitsigns")
+    end,
+  },
 }, {})
 
