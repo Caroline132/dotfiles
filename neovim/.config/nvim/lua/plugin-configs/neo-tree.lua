@@ -274,6 +274,9 @@ require("neo-tree").setup({
         ["ot"] = { "order_by_type", nowait = false },
       }
     }
+  },
+  update_focused_file = {
+    enable = true,
   }
 })
 
