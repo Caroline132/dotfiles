@@ -245,12 +245,6 @@ require('lazy').setup({
     end,
   },
   {
-    "lewis6991/gitsigns.nvim",
-    config = function()
-      require("plugin-configs.gitsigns")
-    end,
-  },
-  {
     "iamcco/markdown-preview.nvim",
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
     ft = { "markdown" },
