@@ -135,6 +135,7 @@ require('lazy').setup({
           return vim.fn.executable 'make' == 1
         end,
       },
+      { "molecule-man/telescope-menufacture" },
     },
     config = function()
       require("plugin-configs.telescope-config")
