@@ -7,6 +7,16 @@ require('telescope').setup {
         ['<C-d>'] = false,
       },
     },
+    vimgrep_arguments = {
+      "rg",
+      "--color=never",
+      "--no-heading",
+      "--with-filename",
+      "--line-number",
+      "--column",
+      "--smart-case",
+      "--hidden",
+    },
   },
 }
 
@@ -68,7 +78,6 @@ local function telescope_live_grep_open_files()
 end
 vim.keymap.set('n', '<leader>s/', telescope_live_grep_open_files, { desc = '[S]earch [/] in Open Files' })
 vim.keymap.set('n', '<leader>ss', require('telescope.builtin').builtin, { desc = '[S]earch [S]elect Telescope' })
-vim.keymap.set('n', '<leader>sgf', require('telescope.builtin').git_files, { desc = '[S]earch [G]it [F]iles' })
 vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
 vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
 vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
