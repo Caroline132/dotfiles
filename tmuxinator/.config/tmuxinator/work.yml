@@ -16,3 +16,8 @@ windows:
               - argo-platform:
                 - cd ~/repos/ArgoPlatform/
                 - nvim .
+  - repos:
+      layout: even-horizontal
+      panes:
+              - repos:
+                - cd ~/repos/
