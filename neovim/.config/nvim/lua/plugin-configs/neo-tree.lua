@@ -277,7 +277,8 @@ require("neo-tree").setup({
   },
   update_focused_file = {
     enable = true,
-  }
+  },
+
 })
 vim.cmd([[nnoremap \ :Neotree reveal<cr>]])
 require('which-key').register {

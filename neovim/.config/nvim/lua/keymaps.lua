@@ -20,3 +20,40 @@ vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to right window", remap = tr
 
 -- Go to normal mode from terminal
 vim.api.nvim_set_keymap("t", "<c-x>", [[<C-\><C-n><esc><cr>]], { noremap = true, silent = true, desc = "Normal mode" })
+
+-- Diff
+require('which-key').register {
+  ['<localleader>d'] = { name = '[D]iff', _ = 'which_key_ignore' },
+}
+
+vim.keymap.set("n", "<localleader>dd", function()
+  local split_filenames = {}
+  for _, buf in ipairs(vim.fn.getbufinfo()) do
+    if buf.hidden == 0 and buf.listed == 1 then
+      table.insert(split_filenames, buf.name)
+    end
+  end
+  if #split_filenames == 2 then
+    vim.cmd.tabnew(split_filenames[1])
+    vim.cmd("vertical diffsplit " .. split_filenames[2])
+    vim.cmd.normal({ args = { "gg" }, bang = true })
+  else
+    vim.notify("Can't diff with more than 2 files open")
+  end
+end, { desc = "Diff between open files" })
+
+vim.keymap.set("x", "<localleader>dD", function()
+  vim.cmd('noau normal! "vy')
+  local filetype = vim.bo.filetype
+  vim.cmd.tabnew()
+  vim.cmd('noau normal! "0P')
+  vim.bo.filetype = filetype
+  vim.bo.buftype = "nowrite"
+  vim.cmd.diffthis()
+  vim.cmd.vsplit()
+  vim.cmd.ene()
+  vim.cmd('noau normal! "vP')
+  vim.bo.filetype = filetype
+  vim.bo.buftype = "nowrite"
+  vim.cmd.diffthis()
+end, { desc = "Diff selection with clipboard" })
