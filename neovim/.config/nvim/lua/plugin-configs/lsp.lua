@@ -119,6 +119,10 @@ require('neodev').setup()
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+local default_options = {
+  capabilities = capabilities,
+  on_attach = on_attach,
+}
 
 -- Ensure the servers above are installed
 local mason_lspconfig = require 'mason-lspconfig'
@@ -127,3 +131,14 @@ require("mason-lspconfig").setup()
 require("mason-tool-installer").setup({
   ensure_installed = servers,
 })
+
+local lspconfig = require("lspconfig")
+local installed_servers = require("mason-lspconfig").get_installed_servers()
+
+local function setup_servers()
+  for _, name in pairs(installed_servers) do
+    lspconfig[name].setup(default_options)
+  end
+end
+
+setup_servers()
