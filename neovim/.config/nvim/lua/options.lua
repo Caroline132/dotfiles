@@ -79,3 +79,9 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 -- Required for bufferline
 vim.opt.termguicolors = true
+
+-- Disable arrow
+vim.keymap.set({'n','x', 'i'}, '<Left>', '<Nop>', { noremap = true, silent = true })
+vim.keymap.set({'n','x', 'i'}, '<Up>', '<Nop>', { noremap = true, silent = true })
+vim.keymap.set({'n','x', 'i'}, '<Right>', '<Nop>', { noremap = true, silent = true })
+vim.keymap.set({'n','x', 'i'}, '<Down>', '<Nop>', { noremap = true, silent = true })
