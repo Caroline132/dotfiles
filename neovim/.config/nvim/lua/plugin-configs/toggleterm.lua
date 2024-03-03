@@ -20,4 +20,4 @@ require("toggleterm").setup({
 })
 
 local term = require("toggleterm.terminal").Terminal
-vim.keymap.set({ "n", "t" }, "<leader>tt", "<cmd>ToggleTerm<cr>", { desc = "Toggle term" })
+vim.keymap.set({ "n", "t" }, "<F9>", "<cmd>ToggleTerm<cr>", { desc = "Toggle term" })
