@@ -7,12 +7,12 @@ windows:
   - dotfiles:
       layout: even-horizontal
       panes:
-              - dotfiles:
-                - cd ~/dotfiles/
-                - nvim .
+        - dotfiles:
+            - cd ~/dotfiles/
+            - nvim .
   - alex-dotfiles:
       layout: even-horizontal
       panes:
-              - alex-dotfiles
-                - cd ~/repos/alex_dotfiles/
-                - nvim .
+        - alex-dotfiles:
+            - cd ~/repos/alex_dotfiles/
+            - nvim .
