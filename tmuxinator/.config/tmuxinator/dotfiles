@@ -1,0 +1,18 @@
+# ~/.tmuxinator/dotfiles.yml
+
+name: dotfiles
+root: ~/
+
+windows:
+  - dotfiles:
+      layout: even-horizontal
+      panes:
+              - dotfiles:
+                - cd ~/dotfiles/
+                - nvim .
+  - alex-dotfiles:
+      layout: even-horizontal
+      panes:
+              - alex-dotfiles
+                - cd ~/repos/alex_dotfiles/
+                - nvim .
