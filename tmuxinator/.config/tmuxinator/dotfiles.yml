@@ -4,10 +4,10 @@ name: dotfiles
 root: ~/
 
 windows:
-  - dotfiles:
+  - caro-dotfiles:
       layout: even-horizontal
       panes:
-        - dotfiles:
+        - caro-dotfiles:
             - cd ~/dotfiles/
             - nvim .
   - alex-dotfiles:
