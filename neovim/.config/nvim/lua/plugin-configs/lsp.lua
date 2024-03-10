@@ -1,69 +1,69 @@
 --  This function gets run when an LSP connects to a particular buffer.
 local on_attach = function(_, bufnr)
-  -- NOTE: Remember that lua is a real programming language, and as such it is possible
-  -- to define small helper and utility functions so you don't have to repeat yourself
-  -- many times.
-  --
-  -- In this case, we create a function that lets us more easily define mappings specific
-  -- for LSP related items. It sets the mode, buffer and description for us each time.
-  local nmap = function(keys, func, desc)
-    if desc then
-      desc = 'LSP: ' .. desc
-    end
+	-- NOTE: Remember that lua is a real programming language, and as such it is possible
+	-- to define small helper and utility functions so you don't have to repeat yourself
+	-- many times.
+	--
+	-- In this case, we create a function that lets us more easily define mappings specific
+	-- for LSP related items. It sets the mode, buffer and description for us each time.
+	local nmap = function(keys, func, desc)
+		if desc then
+			desc = "LSP: " .. desc
+		end
 
-    vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
-  end
+		vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
+	end
 
-  nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
-  nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+	nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
+	nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
 
-  nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
-  nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-  nmap('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
-  nmap('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
-  nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-  nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+	nmap("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
+	nmap("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
+	nmap("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
+	nmap("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
+	nmap("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
+	nmap("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
 
-  -- See `:help K` for why this keymap
-  nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-  nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+	-- See `:help K` for why this keymap
+	nmap("K", vim.lsp.buf.hover, "Hover Documentation")
+	nmap("<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
 
-  -- Lesser used LSP functionality
-  nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-  nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
-  nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
-  nmap('<leader>wl', function()
-    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  end, '[W]orkspace [L]ist Folders')
+	-- Lesser used LSP functionality
+	nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+	nmap("<leader>wa", vim.lsp.buf.add_workspace_folder, "[W]orkspace [A]dd Folder")
+	nmap("<leader>wr", vim.lsp.buf.remove_workspace_folder, "[W]orkspace [R]emove Folder")
+	nmap("<leader>wl", function()
+		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+	end, "[W]orkspace [L]ist Folders")
 
-  -- Create a command `:Format` local to the LSP buffer
-  vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-    vim.lsp.buf.format()
-  end, { desc = 'Format current buffer with LSP' })
+	-- Create a command `:Format` local to the LSP buffer
+	vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
+		vim.lsp.buf.format()
+	end, { desc = "Format current buffer with LSP" })
 end
 
 -- document existing key chains
-require('which-key').register {
-  ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
-  ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
-  ['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
-  ['<leader>h'] = { name = 'Git [H]unk', _ = 'which_key_ignore' },
-  ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
-  ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
-  ['<leader>t'] = { name = '[T]oggle', _ = 'which_key_ignore' },
-  ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
-}
+require("which-key").register({
+	["<leader>c"] = { name = "[C]ode", _ = "which_key_ignore" },
+	["<leader>d"] = { name = "[D]ocument", _ = "which_key_ignore" },
+	["<leader>g"] = { name = "[G]it", _ = "which_key_ignore" },
+	["<leader>h"] = { name = "Git [H]unk", _ = "which_key_ignore" },
+	["<leader>r"] = { name = "[R]ename", _ = "which_key_ignore" },
+	["<leader>s"] = { name = "[S]earch", _ = "which_key_ignore" },
+	["<leader>t"] = { name = "[T]oggle", _ = "which_key_ignore" },
+	["<leader>w"] = { name = "[W]orkspace", _ = "which_key_ignore" },
+})
 -- register which-key VISUAL mode
 -- required for visual <leader>hs (hunk stage) to work
-require('which-key').register({
-  ['<leader>'] = { name = 'VISUAL <leader>' },
-  ['<leader>h'] = { 'Git [H]unk' },
-}, { mode = 'v' })
+require("which-key").register({
+	["<leader>"] = { name = "VISUAL <leader>" },
+	["<leader>h"] = { "Git [H]unk" },
+}, { mode = "v" })
 
 -- mason-lspconfig requires that these setup functions are called in this order
 -- before setting up the servers.
-require('mason').setup()
-require('mason-lspconfig').setup()
+require("mason").setup()
+require("mason-lspconfig").setup()
 
 -- Enable the following language servers
 --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
@@ -74,71 +74,70 @@ require('mason-lspconfig').setup()
 --  If you want to override the default filetypes that your language server will attach to you can
 --  define the property 'filetypes' to the map in question.
 local servers = {
-  "angular-language-server",
-  -- "ansible-language-server",
-  -- "azure-pipelines-language-server",
-  "bash-language-server",
-  "bicep-lsp",
-  "clangd",
-  "delve",
-  "dockerfile-language-server",
-  "editorconfig-checker",
-  "gofumpt",
-  "goimports",
-  "goimports-reviser",
-  "golangci-lint",
-  "golangci-lint-langserver",
-  "golines",
-  "gomodifytags",
-  "gopls",
-  "gotests",
-  "gotestsum",
-  "html-lsp",
-  "iferr",
-  "impl",
-  "java-debug-adapter",
-  "java-test",
-  "jdtls",
-  "json-lsp",
-  "jsonnet-language-server",
-  "lua-language-server",
-  "marksman",
-  "prettier",
-  "pyright",
-  "rust-analyzer",
-  "solargraph",
-  "stylua",
-  "terraform-ls",
-  "typescript-language-server",
-  "vim-language-server",
-  "yamlls",
+	"angular-language-server",
+	-- "ansible-language-server",
+	-- "azure-pipelines-language-server",
+	"bash-language-server",
+	"bicep-lsp",
+	"clangd",
+	"delve",
+	"dockerfile-language-server",
+	"editorconfig-checker",
+	"gofumpt",
+	"goimports",
+	"goimports-reviser",
+	"golangci-lint",
+	"golangci-lint-langserver",
+	"golines",
+	"gomodifytags",
+	"gopls",
+	"gotests",
+	"gotestsum",
+	"html-lsp",
+	"iferr",
+	"impl",
+	"java-debug-adapter",
+	"java-test",
+	"jdtls",
+	"json-lsp",
+	"jsonnet-language-server",
+	"lua-language-server",
+	"marksman",
+	"prettier",
+	"pyright",
+	"rust-analyzer",
+	"stylua",
+	"terraform-ls",
+	"typescript-language-server",
+	"vim-language-server",
+	"yamlls",
 }
 -- Setup neovim lua configuration
-require('neodev').setup()
+require("neodev").setup()
 
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 local default_options = {
-  capabilities = capabilities,
-  on_attach = on_attach,
+	capabilities = capabilities,
+	on_attach = on_attach,
 }
 
 -- Ensure the servers above are installed
-local mason_lspconfig = require 'mason-lspconfig'
+local mason_lspconfig = require("mason-lspconfig")
 
 require("mason-lspconfig").setup()
 require("mason-tool-installer").setup({
-  ensure_installed = servers,
+	ensure_installed = servers,
 })
 
 local lspconfig = require("lspconfig")
 local installed_servers = require("mason-lspconfig").get_installed_servers()
 
 local function setup_servers()
-  for _, name in pairs(installed_servers) do
-    lspconfig[name].setup(default_options)
-  end
+	for _, name in pairs(installed_servers) do
+		lspconfig[name].setup(default_options)
+	end
 end
 
 setup_servers()
