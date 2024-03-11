@@ -4,7 +4,6 @@ lint.linters_by_ft = {
 	dockerfile = { "hadolint" },
 	dotenv = { "dotenv" },
 	go = { "codespell", "golangci-lint", "revive" },
-	javascript = { "eslint_d" },
 	markdown = { "markdownlint" },
 	yaml = { "yamllint" },
 }
