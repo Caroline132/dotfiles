@@ -260,4 +260,27 @@ require("lazy").setup({
 			"nvim-tree/nvim-web-devicons", -- optional dependency
 		},
 	},
+	-- Highlight todo, notes, etc in comments
+	{
+		"folke/todo-comments.nvim",
+		config = function()
+			require("plugin-configs.todo-comments")
+		end,
+	},
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		config = function()
+			require("plugin-configs.indent-blankline")
+		end,
+	},
+	{
+		"echasnovski/mini.nvim",
+		config = function()
+			require("plugin-configs.mini-ai")
+			-- require("plugin-configs.mini-clue")
+			-- require("plugin-configs.mini-statusline")
+			require("plugin-configs.mini-surround")
+			require("plugin-configs.mini-indentscope")
+		end,
+	},
 }, {})
