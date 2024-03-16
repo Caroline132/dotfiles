@@ -2,9 +2,8 @@ local lint = require("lint")
 
 lint.linters_by_ft = {
 	dockerfile = { "hadolint" },
-	dotenv = { "dotenv" },
-	go = { "codespell", "golangci-lint", "revive" },
-	markdown = { "markdownlint" },
+	go = { "codespell", "golangcilint" },
+	javascript = { "eslint_d" },
 	yaml = { "yamllint" },
 }
 

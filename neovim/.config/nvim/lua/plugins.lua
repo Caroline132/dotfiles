@@ -227,10 +227,7 @@ require("lazy").setup({
 	},
 	{
 		"mfussenegger/nvim-lint",
-		event = {
-			"BufReadPre",
-			"BufNewFile",
-		},
+		events = { "BufWritePost", "BufReadPost", "InsertLeave" },
 		config = function()
 			require("plugin-configs.nvim-lint")
 		end,

@@ -21,12 +21,12 @@ local on_attach = function(_, bufnr)
 	nmap("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
 	nmap("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
 	nmap("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
-	nmap("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
-	nmap("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
+	nmap("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]symbols")
+	nmap("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]symbols")
 
 	-- See `:help K` for why this keymap
 	nmap("K", vim.lsp.buf.hover, "Hover Documentation")
-	nmap("<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
+	nmap("<C-q>", vim.lsp.buf.signature_help, "Signature Documentation")
 
 	-- Lesser used LSP functionality
 	nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
@@ -80,9 +80,11 @@ local servers = {
 	"bash-language-server",
 	"bicep-lsp",
 	"clangd",
+	"codespell",
 	"delve",
 	"dockerfile-language-server",
 	"editorconfig-checker",
+	"eslint_d",
 	"gofumpt",
 	"goimports",
 	"goimports-reviser",
@@ -93,6 +95,7 @@ local servers = {
 	"gopls",
 	"gotests",
 	"gotestsum",
+	"hadolint",
 	"html-lsp",
 	"iferr",
 	"impl",
@@ -105,6 +108,7 @@ local servers = {
 	"marksman",
 	"prettier",
 	"pyright",
+	"revive",
 	"rust-analyzer",
 	"stylua",
 	"terraform-ls",
@@ -136,6 +140,10 @@ local installed_servers = require("mason-lspconfig").get_installed_servers()
 
 local function setup_servers()
 	for _, name in pairs(installed_servers) do
+		if lspconfig[name] == "gopls" then
+			local gopls_opts = require("lsp.gopls")
+			default_options = vim.tbl_deep_extend("force", default_options, gopls_opts)
+		end
 		lspconfig[name].setup(default_options)
 	end
 end
