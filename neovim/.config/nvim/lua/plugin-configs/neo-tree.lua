@@ -293,3 +293,4 @@ require("which-key").register({
 	["<leader>n"] = { name = "[N]eotree", _ = "which_key_ignore" },
 })
 vim.keymap.set({ "n" }, "<leader>tn", "<cmd>Neotree show toggle<cr>", { desc = "Neotree filesystem toggle" })
+vim.keymap.set({ "n" }, "<leader>f", "<cmd>Neotree filesystem focus reveal left<cr>", { desc = "Neotree focus reveal" })
