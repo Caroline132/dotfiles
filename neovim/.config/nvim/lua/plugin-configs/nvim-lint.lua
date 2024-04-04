@@ -19,3 +19,7 @@ vim.api.nvim_create_autocmd({ "BufEnter", "InsertLeave" }, {
 vim.keymap.set("n", "<leader>l", function()
 	lint.try_lint()
 end, { desc = "Trigger linting for current file" })
+
+lint.linters.yamllint.args = {
+	'-d "{extends: default, rules: line-length: disable document-start: disable}"',
+}
