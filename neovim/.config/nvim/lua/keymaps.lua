@@ -23,6 +23,7 @@ vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to right window", remap = tr
 vim.api.nvim_set_keymap("t", "<c-x>", [[<C-\><C-n><esc><cr>]], { noremap = true, silent = true, desc = "Normal mode" })
 
 vim.keymap.set("i", "jk", "<esc>", { desc = "escape" })
+vim.keymap.set("v", "jk", "<esc>", { desc = "escape" })
 
 -- Diff
 require("which-key").register({
