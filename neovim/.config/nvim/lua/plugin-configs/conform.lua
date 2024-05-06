@@ -16,6 +16,8 @@ conform.setup({
 		lua = { "stylua" },
 		python = { "isort", "black" },
 		go = { "goimports", "gofmt" },
+		sh = { "shfmt" },
+		zsh = { "shfmt" },
 		-- Use the "*" filetype to run formatters on all filetypes.
 		-- ["*"] = { "codespell" },
 		-- Use the "_" filetype to run formatters on filetypes that don't
@@ -30,6 +32,11 @@ conform.setup({
 		return { timeout_ms = 500, lsp_fallback = true }
 	end,
 })
+conform.formatters.shfmt = {
+	prepend_args = { "-i", "2" },
+	-- The base args are { "-filename", "$FILENAME" } so the final args will be
+	-- { "-i", "2", "-filename", "$FILENAME" }
+}
 
 vim.api.nvim_create_user_command("FormatDisable", function(args)
 	if args.bang then
