@@ -73,7 +73,7 @@ vim.keymap.set("n", "<leader>tc", function()
 	})
 	t:toggle()
 end, { desc = "Toggle term current dir" })
-vim.keymap.set("n", "<leader>tt;", function()
+vim.keymap.set("n", "<leader>tt", function()
 	local t = term:new({
 		display_name = "default",
 	})
