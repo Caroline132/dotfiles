@@ -18,6 +18,14 @@ vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Go to lower window", remap = tr
 vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Go to upper window", remap = true })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to right window", remap = true })
 
+-- Remove highlighted search by pressing esc
+vim.api.nvim_set_keymap(
+	"n",
+	"<esc>",
+	"<cmd>noh<cr><esc>",
+	{ noremap = true, silent = true, desc = "Remove highlight or escape" }
+)
+
 -- Go to normal mode from terminal
 vim.api.nvim_set_keymap("t", "<c-x>", [[<C-\><C-n><esc><cr>]], { noremap = true, silent = true, desc = "Normal mode" })
 
