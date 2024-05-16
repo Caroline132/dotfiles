@@ -31,6 +31,10 @@ require("lazy").setup({
 	"tpope/vim-sleuth",
 
 	"airblade/vim-rooter",
+	{
+		"tyru/capture.vim",
+		cmd = "Capture",
+	},
 	-- NOTE: This is where your plugins related to LSP can be installed.
 	--  The configuration is done below. Search for lspconfig to find it below.
 	{
@@ -168,14 +172,14 @@ require("lazy").setup({
 	{
 		"nvim-tree/nvim-web-devicons",
 	},
-	{
-		"akinsho/bufferline.nvim",
-		version = "*",
-		dependencies = "nvim-tree/nvim-web-devicons",
-		config = function()
-			require("plugin-configs.bufferline")
-		end,
-	},
+	-- {
+	-- 	"akinsho/bufferline.nvim",
+	-- 	version = "*",
+	-- 	dependencies = "nvim-tree/nvim-web-devicons",
+	-- 	config = function()
+	-- 		require("plugin-configs.bufferline")
+	-- 	end,
+	-- },
 	{
 		"iamcco/markdown-preview.nvim",
 		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
