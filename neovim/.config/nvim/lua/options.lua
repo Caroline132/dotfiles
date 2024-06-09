@@ -58,7 +58,8 @@ vim.o.splitbelow = true
 vim.o.splitright = true
 
 -- Remove wrap
--- vim.o.wrap = false
+-- vim.o.wrap = true
+vim.opt.textwidth = 0
 
 -- Set clipboard to system's
 vim.o.clipboard = "unnamedplus"
