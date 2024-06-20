@@ -1,23 +1,35 @@
 # ~/.tmuxinator/work.yml
 
 name: code-work
-root: ~/
+root: ~/repos
 
 windows:
   - automation:
       layout: even-horizontal
       panes:
-              - automation:
-                - cd ~/repos/Automation/
-                - nvim .
+        - terraform-modules:
+            - cd ~/repos/TerraformModules/
+        - automation:
+            - cd ~/repos/Automation/
   - argo-platform:
       layout: even-horizontal
       panes:
-              - argo-platform:
-                - cd ~/repos/ArgoPlatform/
-                - nvim .
-  - repos:
+        - argo-platform:
+            - cd ~/repos/ArgoPlatform/
+  - wiki:
       layout: even-horizontal
       panes:
-              - repos:
-                - cd ~/repos/
+        - wiki:
+            - cd ~/repos/Wiki/
+  - cicd:
+      layout: even-horizontal
+      panes:
+        - systeminformer:
+            - cd ~/repos/SystemInformer/
+        - argoexample:
+            - cd ~/repos/ArgoExample/
+  - images:
+      layout: even-horizontal
+      panes:
+        - images:
+            - cd ~/repos/Images/
