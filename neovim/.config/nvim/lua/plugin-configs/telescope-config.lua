@@ -3,11 +3,6 @@ local actions = require("telescope.actions")
 
 require("telescope").setup({
 	defaults = {
-		mappings = {
-			i = {
-				["<esc>"] = actions.close,
-			},
-		},
 		vimgrep_arguments = {
 			"rg",
 			"--color=never",
@@ -18,11 +13,57 @@ require("telescope").setup({
 			"--smart-case",
 			"--hidden",
 		},
+		file_ignore_patterns = { "node_modules/", ".git/", ".attachments/" },
+		prompt_prefix = " ",
+		selection_caret = "󰼛 ",
+		entry_prefix = "  ",
+		initial_mode = "insert",
+		path_display = { "relative" },
+		winblend = 0,
+		border = {},
+		borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+		color_devicons = true,
+		set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
+		file_previewer = require("telescope.previewers").vim_buffer_cat.new,
+		grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
+		qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
+		layout_strategy = "vertical",
+		layout_config = {
+			horizontal = {
+				mirror = false,
+				width = 0.95,
+				height = 0.95,
+				preview_width = 0.5,
+			},
+			vertical = {
+				mirror = false,
+				width = 0.95,
+				height = 0.95,
+				prompt_position = "bottom",
+			},
+		},
+		mappings = {
+			i = {
+				-- To disable a keymap, put [map] = false
+				-- So, to not map "<C-n>", just put
+				-- ["<c-x>"] = false,
+				["<esc>"] = actions.close,
+				["<F6>"] = actions.close,
+			},
+		},
+	},
+	extensions = {
+		advanced_git_search = {
+			-- See Config
+			diff_plugin = "diffview",
+		},
 	},
 })
 
 -- Enable telescope fzf native, if installed
 pcall(require("telescope").load_extension, "fzf")
+
+require("telescope").load_extension("advanced_git_search")
 
 -- Telescope live_grep in git root
 -- Function to find the git root directory based on the current buffer's path
@@ -91,3 +132,37 @@ vim.keymap.set("n", "<leader>sG", ":LiveGrepGitRoot<cr>", { desc = "[S]earch by 
 vim.keymap.set("n", "<leader>sd", require("telescope.builtin").diagnostics, { desc = "[S]earch [D]iagnostics" })
 vim.keymap.set("n", "<leader>sr", require("telescope.builtin").resume, { desc = "[S]earch [R]esume" })
 vim.keymap.set("n", "<leader>sF", require("telescope.builtin").git_files, { desc = "[S]earch [G]it [F]iles" })
+
+vim.api.nvim_create_user_command(
+	"DiffCommitLine",
+	"lua require('telescope').extensions.advanced_git_search.diff_commit_line()",
+	{ range = true }
+)
+
+vim.api.nvim_set_keymap("v", "<leader>gsl", ":DiffCommitLine<CR>", { noremap = true, desc = "Advanced line diff" })
+vim.keymap.set(
+	"n",
+	"<leader>gsb",
+	require("telescope").extensions.advanced_git_search.diff_commit_file,
+	{ desc = "Advanced buffer diff" }
+)
+vim.keymap.set(
+	"n",
+	"<leader>gsi",
+	require("telescope").extensions.advanced_git_search.search_log_content,
+	{ desc = "Advanced Search inside commit contents" }
+)
+vim.keymap.set(
+	"n",
+	"<leader>gsf",
+	require("telescope").extensions.advanced_git_search.diff_branch_file,
+	{ desc = "Advanced Branch file" }
+)
+vim.keymap.set("n", "<leader>gsB", "<cmd>Telescope git_bcommits<cr>", { desc = "Buffer commits" })
+vim.keymap.set("n", "<leader>gsc", "<cmd>Telescope git_commits<cr>", { desc = "Commits" })
+vim.keymap.set(
+	"n",
+	"<leader>gsr",
+	require("telescope").extensions.advanced_git_search.checkout_reflog,
+	{ desc = "Advanced Reflog" }
+)
