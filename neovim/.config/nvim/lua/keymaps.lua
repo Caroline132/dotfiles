@@ -74,3 +74,33 @@ vim.keymap.set("x", "K", ":m '<-2<CR>gv=gv", { desc = "Shift selection up" })
 vim.api.nvim_set_keymap("x", "<", "<gv", { noremap = true, silent = true, desc = "Indent and keep selection" })
 vim.api.nvim_set_keymap("x", ">", ">gv", { noremap = true, silent = true, desc = "Indent and keep selection" })
 vim.keymap.set("n", "<leader>ts", "<Cmd>setlocal spell! spell?<CR>", { desc = "Toggle 'spell'" })
+
+local toggle_diagnostic = function()
+	local buf_id = vim.api.nvim_get_current_buf()
+
+	if vim.diagnostic.is_enabled({ bufnr = buf_id }) then
+		vim.diagnostic.enable(false, { bufnr = buf_id })
+	else
+		vim.diagnostic.enable(true, { bufnr = buf_id })
+	end
+end
+vim.keymap.set("n", "td", function()
+	print(toggle_diagnostic())
+end, { desc = "Toggle diagnostic" })
+
+local toggle_colorscheme = function()
+	-- Get the current colorscheme
+	local current_colorscheme = vim.g.colors_name
+
+	-- Check the current colorscheme and toggle to the other one
+	if current_colorscheme == "sweetie" then
+		vim.o.background = "dark"
+		vim.cmd("colorscheme tokyonight-night")
+	else
+		vim.o.background = "light"
+		vim.cmd("colorscheme sweetie")
+	end
+end
+vim.keymap.set("n", "<leader>td", function()
+	print(toggle_colorscheme())
+end, { desc = "Toggle colorscheme" })
