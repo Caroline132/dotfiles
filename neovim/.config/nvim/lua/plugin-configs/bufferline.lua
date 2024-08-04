@@ -4,18 +4,21 @@ require("bufferline").setup({
 	},
 })
 
+require("which-key").register({
+	["<leader>b"] = { name = "[B]ufferline", _ = "which_key_ignore" },
+})
 vim.keymap.set({ "n", "x" }, "H", "<cmd>BufferLineCyclePrev<cr>", { desc = "Previous buffer" })
 vim.keymap.set({ "n", "x" }, "L", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
-vim.keymap.set({ "n", "x" }, "<leader>1", "<cmd>lua require('bufferline').go_to(1, true)<cr>", { desc = "Buf 1" })
-vim.keymap.set({ "n", "x" }, "<leader>2", "<cmd>lua require('bufferline').go_to(2, true)<cr>", { desc = "Buf 2" })
-vim.keymap.set({ "n", "x" }, "<leader>3", "<cmd>lua require('bufferline').go_to(3, true)<cr>", { desc = "Buf 3" })
-vim.keymap.set({ "n", "x" }, "<leader>4", "<cmd>lua require('bufferline').go_to(4, true)<cr>", { desc = "Buf 4" })
-vim.keymap.set({ "n", "x" }, "<leader>5", "<cmd>lua require('bufferline').go_to(5, true)<cr>", { desc = "Buf 5" })
-vim.keymap.set({ "n", "x" }, "<leader>6", "<cmd>lua require('bufferline').go_to(6, true)<cr>", { desc = "Buf 6" })
-vim.keymap.set({ "n", "x" }, "<leader>7", "<cmd>lua require('bufferline').go_to(7, true)<cr>", { desc = "Buf 7" })
-vim.keymap.set({ "n", "x" }, "<leader>8", "<cmd>lua require('bufferline').go_to(8, true)<cr>", { desc = "Buf 8" })
-vim.keymap.set({ "n", "x" }, "<leader>9", "<cmd>lua require('bufferline').go_to(9, true)<cr>", { desc = "Buf 9" })
-vim.keymap.set({ "n", "x" }, "<leader>0", "<cmd>lua require('bufferline').go_to(10, true)<cr>", { desc = "Buf 10" })
+vim.keymap.set({ "n", "x" }, "<leader>b1", "<cmd>lua require('bufferline').go_to(1, true)<cr>", { desc = "Buf 1" })
+vim.keymap.set({ "n", "x" }, "<leader>b2", "<cmd>lua require('bufferline').go_to(2, true)<cr>", { desc = "Buf 2" })
+vim.keymap.set({ "n", "x" }, "<leader>b3", "<cmd>lua require('bufferline').go_to(3, true)<cr>", { desc = "Buf 3" })
+vim.keymap.set({ "n", "x" }, "<leader>b4", "<cmd>lua require('bufferline').go_to(4, true)<cr>", { desc = "Buf 4" })
+vim.keymap.set({ "n", "x" }, "<leader>b5", "<cmd>lua require('bufferline').go_to(5, true)<cr>", { desc = "Buf 5" })
+vim.keymap.set({ "n", "x" }, "<leader>b6", "<cmd>lua require('bufferline').go_to(6, true)<cr>", { desc = "Buf 6" })
+vim.keymap.set({ "n", "x" }, "<leader>b7", "<cmd>lua require('bufferline').go_to(7, true)<cr>", { desc = "Buf 7" })
+vim.keymap.set({ "n", "x" }, "<leader>b8", "<cmd>lua require('bufferline').go_to(8, true)<cr>", { desc = "Buf 8" })
+vim.keymap.set({ "n", "x" }, "<leader>b9", "<cmd>lua require('bufferline').go_to(9, true)<cr>", { desc = "Buf 9" })
+vim.keymap.set({ "n", "x" }, "<leader>b0", "<cmd>lua require('bufferline').go_to(10, true)<cr>", { desc = "Buf 10" })
 vim.keymap.set({ "n", "x" }, "<leader>bd", "<cmd>bn | bd#<cr>", { desc = "Delete-buffer" })
 vim.keymap.set(
 	{ "n", "x" },
