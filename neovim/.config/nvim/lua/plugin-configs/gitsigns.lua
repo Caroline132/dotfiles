@@ -38,6 +38,9 @@ require("gitsigns").setup({
 		col = 1,
 	},
 })
+require("which-key").register({
+	["<leader>h"] = { name = "Git [H]unk", _ = "which_key_ignore" },
+})
 vim.keymap.set("n", "<leader>ha", "<cmd>Gitsigns attach<CR>", { desc = "Gitsigns attach" })
 vim.keymap.set("n", "<leader>hb", '<cmd>lua require"gitsigns".blame_line{full=true}<CR>', { desc = "blame line" })
 vim.keymap.set("n", "<leader>hc", "<cmd>Gitsigns toggle_current_line_blame<CR>", { desc = "toggle current line blame" })
