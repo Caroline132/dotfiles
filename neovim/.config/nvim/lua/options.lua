@@ -87,3 +87,5 @@ vim.keymap.set({ "n", "x", "i" }, "<Left>", "<Nop>", { noremap = true, silent = 
 vim.keymap.set({ "n", "x", "i" }, "<Up>", "<Nop>", { noremap = true, silent = true })
 vim.keymap.set({ "n", "x", "i" }, "<Right>", "<Nop>", { noremap = true, silent = true })
 vim.keymap.set({ "n", "x", "i" }, "<Down>", "<Nop>", { noremap = true, silent = true })
+
+vim.opt.termguicolors = true
