@@ -10,4 +10,4 @@ require("img-clip").setup({
 	},
 })
 
-vim.keymap.set({ "n" }, "<leader>p", "<cmd>PasteImage<cr>", { desc = "Paste image into .attachments directory" })
+vim.keymap.set({ "n" }, "<leader>p", "<cmd>PasteImage<cr>", { desc = "Paste image" })
