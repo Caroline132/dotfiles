@@ -273,3 +273,4 @@ fpath+=~/.zfunc
 
 # Created by `pipx` on 2024-04-22 22:19:55
 export PATH="$PATH:/home/caro/.local/bin"
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
