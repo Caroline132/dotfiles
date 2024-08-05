@@ -138,9 +138,16 @@ require("lazy").setup({
 				end,
 			},
 			{ "molecule-man/telescope-menufacture" },
+			{ "aaronhallaert/ts-advanced-git-search.nvim" },
 		},
 		config = function()
 			require("plugin-configs.telescope-config")
+		end,
+	},
+	{
+		"sindrets/diffview.nvim",
+		config = function()
+			require("plugin-configs.diffview")
 		end,
 	},
 
@@ -155,7 +162,6 @@ require("lazy").setup({
 			require("plugin-configs.nvim-treesitter")
 		end,
 	},
-
 	{
 		"nvim-neo-tree/neo-tree.nvim",
 		branch = "v3.x",
@@ -189,6 +195,16 @@ require("lazy").setup({
 		end,
 		config = function()
 			require("plugin-configs.markdown-preview")
+		end,
+	},
+	{
+		"OXY2DEV/markview.nvim",
+		dependencies = {
+			"nvim-tree/nvim-web-devicons", -- Used by the code bloxks
+		},
+
+		config = function()
+			require("markview").setup()
 		end,
 	},
 	{
@@ -310,6 +326,27 @@ require("lazy").setup({
 		},
 		config = function()
 			require("codeium").setup({})
+		end,
+	},
+	-- Themes
+	{
+		"folke/tokyonight.nvim",
+		event = "User LoadColorSchemes",
+		opts = {
+			style = "storm",
+			dim_inactive = false,
+		},
+	},
+	{
+		"NTBBloodbath/sweetie.nvim",
+		event = "User LoadColorSchemes",
+	},
+	{
+		"catppuccin/nvim",
+		event = "User LoadColorSchemes",
+		name = "catppuccin",
+		config = function()
+			vim.g.catppuccin_flavour = "latte"
 		end,
 	},
 })
