@@ -180,4 +180,7 @@ alias kdelcj='kubectl delete cronjob'
 alias kgj='kubectl get job'
 alias kej='kubectl edit job'
 alias kdj='kubectl describe job'
+
+# Inspektor gadget
+alias kgad='kubectl gadget'
 alias kdelj='kubectl delete job'
