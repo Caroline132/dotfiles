@@ -55,9 +55,6 @@ require("diffview").setup({
 	}, -- See ':h diffview-config-hooks'
 })
 
-require("which-key").register({
-	["<localleader>g"] = { name = "[D]iffview", _ = "which_key_ignore" },
-})
 vim.keymap.set("n", "<localleader>gd", "<cmd>DiffviewOpen<cr>", { desc = "Diff view" })
 vim.keymap.set("n", "<localleader>gh", "<cmd>DiffviewFileHistory %<cr>", { desc = "Current file history" })
 vim.keymap.set("n", "<localleader>gH", "<cmd>DiffviewFileHistory<cr>", { desc = "Global file history" })

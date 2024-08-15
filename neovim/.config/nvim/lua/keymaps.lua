@@ -32,11 +32,6 @@ vim.api.nvim_set_keymap("t", "<c-x>", [[<C-\><C-n><esc><cr>]], { noremap = true,
 vim.keymap.set("i", "jk", "<esc>", { desc = "escape" })
 vim.keymap.set("v", "jk", "<esc>", { desc = "escape" })
 
--- Diff
-require("which-key").register({
-	["<localleader>d"] = { name = "[D]iff", _ = "which_key_ignore" },
-})
-
 vim.keymap.set("n", "<localleader>dd", function()
 	local split_filenames = {}
 	for _, buf in ipairs(vim.fn.getbufinfo()) do

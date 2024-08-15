@@ -4,9 +4,6 @@ require("bufferline").setup({
 	},
 })
 
-require("which-key").register({
-	["<leader>b"] = { name = "[B]ufferline", _ = "which_key_ignore" },
-})
 vim.keymap.set({ "n", "x" }, "H", "<cmd>BufferLineCyclePrev<cr>", { desc = "Previous buffer" })
 vim.keymap.set({ "n", "x" }, "L", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
 vim.keymap.set({ "n", "x" }, "<leader>b1", "<cmd>lua require('bufferline').go_to(1, true)<cr>", { desc = "Buf 1" })
