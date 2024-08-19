@@ -203,16 +203,16 @@ require("lazy").setup({
 			require("plugin-configs.markdown-preview")
 		end,
 	},
-	{
-		"OXY2DEV/markview.nvim",
-		dependencies = {
-			"nvim-tree/nvim-web-devicons", -- Used by the code bloxks
-		},
-
-		config = function()
-			require("markview").setup()
-		end,
-	},
+	-- {
+	-- 	"OXY2DEV/markview.nvim",
+	-- 	dependencies = {
+	-- 		"nvim-tree/nvim-web-devicons", -- Used by the code bloxks
+	-- 	},
+	--
+	-- 	config = function()
+	-- 		require("markview").setup()
+	-- 	end,
+	-- },
 	{
 		"MeanderingProgrammer/markdown.nvim",
 		name = "render-markdown", -- Only needed if you have another plugin named markdown.nvim

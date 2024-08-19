@@ -1,3 +1,8 @@
+local wk = require("which-key")
+local setup = {
+	preset = "helix",
+}
+wk.setup(setup)
 require("which-key").add({
 	{ "<localleader>d", group = "[D]iff" },
 	{ "<localleader>d_", hidden = true },
