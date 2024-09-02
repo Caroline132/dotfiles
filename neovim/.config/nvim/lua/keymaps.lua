@@ -30,7 +30,6 @@ vim.api.nvim_set_keymap(
 vim.api.nvim_set_keymap("t", "<c-x>", [[<C-\><C-n><esc><cr>]], { noremap = true, silent = true, desc = "Normal mode" })
 
 vim.keymap.set("i", "jk", "<esc>", { desc = "escape" })
-vim.keymap.set("v", "jk", "<esc>", { desc = "escape" })
 
 vim.keymap.set("n", "<localleader>dd", function()
 	local split_filenames = {}
