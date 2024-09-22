@@ -34,4 +34,6 @@ require("which-key").add({
 	{ "<leader>b_", hidden = true },
 	{ "<leader>h", group = "Git [H]unk" },
 	{ "<leader>h_", hidden = true },
+	{ "<leader>o", group = "[O]bsidian" },
+	{ "<leader>h_", hidden = true },
 })

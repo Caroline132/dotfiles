@@ -367,4 +367,11 @@ require("lazy").setup({
 			vim.g.catppuccin_flavour = "latte"
 		end,
 	},
+	{
+		"epwalsh/obsidian.nvim",
+		version = "*",
+		config = function()
+			require("plugin-configs.obsidian")
+		end,
+	},
 })
