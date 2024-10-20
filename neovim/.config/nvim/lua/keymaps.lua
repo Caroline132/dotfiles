@@ -81,20 +81,3 @@ end
 vim.keymap.set("n", "td", function()
 	print(toggle_diagnostic())
 end, { desc = "Toggle diagnostic" })
-
-local toggle_colorscheme = function()
-	-- Get the current colorscheme
-	local current_colorscheme = vim.g.colors_name
-
-	-- Check the current colorscheme and toggle to the other one
-	if current_colorscheme == "sweetie" then
-		vim.o.background = "dark"
-		vim.cmd("colorscheme tokyonight-night")
-	else
-		vim.o.background = "light"
-		vim.cmd("colorscheme sweetie")
-	end
-end
-vim.keymap.set("n", "<leader>td", function()
-	print(toggle_colorscheme())
-end, { desc = "Toggle colorscheme" })
