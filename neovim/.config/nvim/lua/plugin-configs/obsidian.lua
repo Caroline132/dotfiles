@@ -1,8 +1,9 @@
+local vault_dir = vim.env.OBSIDIAN_VAULT
 require("obsidian").setup({
 	workspaces = {
 		{
 			name = "default",
-			path = "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/CaroVault",
+			path = vault_dir,
 		},
 	},
 	ui = {
