@@ -1,0 +1,5 @@
+vim.keymap.set("x", "<localleader>cl", "<cmd>CBlcbox<cr>", { desc = "Left aligned box" })
+vim.keymap.set("x", "<localleader>cc", "<cmd>CBccbox<cr>", { desc = "Centered box" })
+vim.keymap.set("x", "<localleader>cr", "<cmd>CBrcbox<cr>", { desc = "Right aligned box" })
+vim.keymap.set("x", "<localleader>cd", "<cmd>CBd<cr>", { desc = "Delete box" })
+vim.keymap.set("n", "<localleader>ct", "<cmd>CBcline<cr>", { desc = "Centered line" })

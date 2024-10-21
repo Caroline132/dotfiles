@@ -374,4 +374,10 @@ require("lazy").setup({
 			require("plugin-configs.obsidian")
 		end,
 	},
+	{
+		"LudoPinelli/comment-box.nvim",
+		config = function()
+			require("plugin-configs.comment-box")
+		end,
+	},
 })
