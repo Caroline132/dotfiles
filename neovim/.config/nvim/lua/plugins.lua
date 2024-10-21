@@ -380,4 +380,10 @@ require("lazy").setup({
 			require("plugin-configs.comment-box")
 		end,
 	},
+	{
+		"s1n7ax/nvim-window-picker",
+		config = function()
+			require("plugin-configs.nvim-window-picker")
+		end,
+	},
 })

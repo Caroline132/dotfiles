@@ -1,5 +1,43 @@
 -- See `:help telescope` and `:help telescope.setup()`
+local action_state = require("telescope.actions.state")
+local action_mt = require("telescope.actions.mt")
 local actions = require("telescope.actions")
+local action_set = require("telescope.actions.set")
+
+local custom_actions = {}
+
+custom_actions.yank_entry = function(prompt_bufnr)
+	local entry = action_state.get_selected_entry()
+	vim.fn.setreg("+", entry.value)
+	actions.close(prompt_bufnr)
+end
+
+local pick_window = function(prompt_bufnr, direction)
+	-- Use nvim-window-picker to choose the window by dynamically attaching a function
+	local picker = action_state.get_current_picker(prompt_bufnr)
+	picker.get_selection_window = function(pickr, _)
+		local picked_window_id = require("window-picker").pick_window({
+			autoselect_one = true,
+			include_current_win = true,
+		}) or vim.api.nvim_get_current_win()
+		-- Unbind after using so next instance of the picker acts normally
+		pickr.get_selection_window = nil
+		return picked_window_id
+	end
+
+	action_set.select(prompt_bufnr, direction)
+	vim.cmd("stopinsert")
+end
+
+local pick_vertical = function(prompt_bufnr)
+	pick_window(prompt_bufnr, "vertical")
+end
+local pick_horizontal = function(prompt_bufnr)
+	pick_window(prompt_bufnr, "horizontal")
+end
+local pick_default = function(prompt_bufnr)
+	pick_window(prompt_bufnr, "default")
+end
 
 require("telescope").setup({
 	defaults = {
@@ -49,6 +87,9 @@ require("telescope").setup({
 				-- ["<c-x>"] = false,
 				["<esc>"] = actions.close,
 				["<F6>"] = actions.close,
+				["<C-v>"] = pick_vertical,
+				["<C-x>"] = pick_horizontal,
+				["<C-s>"] = pick_default,
 			},
 		},
 	},
