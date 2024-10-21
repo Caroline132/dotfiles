@@ -1,0 +1,12 @@
+# ~/.tmuxinator/obsidian.yml
+
+name: obsidian
+root: ~/
+
+windows:
+  - obs:
+      layout: tiled
+      panes:
+        - working-memory:
+            - cd /mnt/c/Users/TIPPINSC/OneDrive\ -\ DFO-MPO/Documents/WorkVault
+            - nvim working-memory.md
