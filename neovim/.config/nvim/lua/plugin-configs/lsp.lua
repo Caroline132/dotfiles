@@ -98,6 +98,7 @@ local servers = {
 	"typescript-language-server",
 	"vim-language-server",
 	"yamlls",
+	"yamlfmt",
 }
 -- Setup neovim lua configuration
 require("neodev").setup()
