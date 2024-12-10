@@ -81,3 +81,11 @@ end
 vim.keymap.set("n", "td", function()
 	print(toggle_diagnostic())
 end, { desc = "Toggle diagnostic" })
+
+vim.keymap.set("n", "]t", function()
+  vim.cmd.tabnext()
+end, { desc = "Next tab" })
+vim.keymap.set("n", "[t", function()
+  vim.cmd.tabprevious()
+end, { desc = "Previous tab" })
+vim.keymap.set("n", "<leader>xt", "<cmd>tabclose<CR>", { desc = "Close tab" })
