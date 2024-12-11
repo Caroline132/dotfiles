@@ -181,30 +181,30 @@ vim.api.nvim_create_user_command(
 	{ range = true }
 )
 
-vim.api.nvim_set_keymap("v", "<leader>gsl", ":DiffCommitLine<CR>", { noremap = true, desc = "Advanced line diff" })
+vim.api.nvim_set_keymap("v", "<leader>gl", ":DiffCommitLine<CR>", { noremap = true, desc = "Advanced line diff" })
 vim.keymap.set(
 	"n",
-	"<leader>gsb",
+	"<leader>gb",
 	require("telescope").extensions.advanced_git_search.diff_commit_file,
 	{ desc = "Advanced buffer diff" }
 )
 vim.keymap.set(
 	"n",
-	"<leader>gsi",
+	"<leader>gi",
 	require("telescope").extensions.advanced_git_search.search_log_content,
 	{ desc = "Advanced Search inside commit contents" }
 )
 vim.keymap.set(
 	"n",
-	"<leader>gsf",
+	"<leader>gf",
 	require("telescope").extensions.advanced_git_search.diff_branch_file,
 	{ desc = "Advanced Branch file" }
 )
-vim.keymap.set("n", "<leader>gsB", "<cmd>Telescope git_bcommits<cr>", { desc = "Buffer commits" })
-vim.keymap.set("n", "<leader>gsc", "<cmd>Telescope git_commits<cr>", { desc = "Commits" })
+vim.keymap.set("n", "<leader>gB", "<cmd>Telescope git_bcommits<cr>", { desc = "Buffer commits" })
+vim.keymap.set("n", "<leader>gc", "<cmd>Telescope git_commits<cr>", { desc = "Commits" })
 vim.keymap.set(
 	"n",
-	"<leader>gsr",
+	"<leader>gr",
 	require("telescope").extensions.advanced_git_search.checkout_reflog,
 	{ desc = "Advanced Reflog" }
 )
