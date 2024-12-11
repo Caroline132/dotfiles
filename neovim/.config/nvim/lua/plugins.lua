@@ -386,4 +386,8 @@ require("lazy").setup({
 			require("plugin-configs.nvim-window-picker")
 		end,
 	},
+	{
+		"towolf/vim-helm",
+		ft = { "helm" },
+	},
 })

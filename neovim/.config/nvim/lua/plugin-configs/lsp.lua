@@ -78,6 +78,7 @@ local servers = {
 	"gotests",
 	"gotestsum",
 	"hadolint",
+	"helm-ls",
 	"html-lsp",
 	"iferr",
 	"impl",
