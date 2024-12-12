@@ -38,4 +38,6 @@ require("which-key").add({
 	{ "<leader>o_", hidden = true },
 	{ "<localleader>c", group = "[C]omment box", mode = "v" },
 	{ "<localleader>c_", hidden = true, mode = "v" },
+	{ "<localleader>r", group = "[K]ustomize", mode = "v" },
+	{ "<localleader>r_", hidden = true, mode = "v" },
 })

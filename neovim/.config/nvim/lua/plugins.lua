@@ -390,4 +390,10 @@ require("lazy").setup({
 		"towolf/vim-helm",
 		ft = { "helm" },
 	},
+	{
+		"Allaman/kustomize.nvim",
+		config = function()
+			require("plugin-configs.kustomize")
+		end,
+	},
 })
