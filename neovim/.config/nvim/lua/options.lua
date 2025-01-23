@@ -93,4 +93,4 @@ vim.opt.termguicolors = true
 vim.g.editorconfig = true
 
 -- Remove blinking from terminal cursor
-vim.o.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,t:blinkon0"
+-- vim.o.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,t:blinkon0"
