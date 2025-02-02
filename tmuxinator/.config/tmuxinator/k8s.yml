@@ -46,9 +46,6 @@ windows:
   - all:
       layout: tiled
       panes:
-        - kubie_sandbox:
-            - kubie ctx akssandbox-admin
-            - kubie ns argocd
         - kubie_sc2gsandbox:
             - kubie ctx aks-sandbox
             - kubie ns argocd
@@ -61,23 +58,14 @@ windows:
         - kubie_test:
             - kubie ctx akstest
             - kubie ns argocd
+        - kubie_sc2gtest:
+            - kubie ctx aks-test
+            - kubie ns argocd
         - kubie_prod:
             - kubie ctx aksprod-b
             - kubie ns argocd
-  - sandbox:
-      layout: tiled
-      panes:
-        - kubie_sandbox:
-            - kubie ctx akssandbox-admin
-            - kubie ns argocd
-        - kubie_sandbox:
-            - kubie ctx akssandbox-admin
-            - kubie ns argocd
-        - kubie_sandbox:
-            - kubie ctx akssandbox-admin
-            - kubie ns argocd
-        - kubie_sandbox:
-            - kubie ctx akssandbox-admin
+        - kubie_sc2gprod:
+            - kubie ctx aks-prod
             - kubie ns argocd
   - sc2g-sandbox:
       layout: tiled
@@ -139,18 +127,48 @@ windows:
         - kubie_test:
             - kubie ctx akstest
             - kubie ns argocd
+  - sc2g-test:
+      layout: tiled
+      panes:
+        - kubie_sc2gtest:
+            - kubie ctx aks-test
+            - kubie ns argocd
+        - kubie_sc2gtest:
+            - kubie ctx aks-test
+            - kubie ns argocd
+        - kubie_sc2gtest:
+            - kubie ctx aks-test
+            - kubie ns argocd
+        - kubie_sc2gtest:
+            - kubie ctx aks-test
+            - kubie ns argocd
   - aksprod-b:
       layout: tiled
       panes:
         - kubie_aksprod-b:
-            - kubie ctx aksaksprod-b
+            - kubie ctx aksprod-b
             - kubie ns argocd
         - kubie_aksprod-b:
-            - kubie ctx aksaksprod-b
+            - kubie ctx aksprod-b
             - kubie ns argocd
         - kubie_aksprod-b:
-            - kubie ctx aksaksprod-b
+            - kubie ctx aksprod-b
             - kubie ns argocd
         - kubie_aksprod-b:
-            - kubie ctx aksaksprod-b
+            - kubie ctx aksprod-b
+            - kubie ns argocd
+  - sc2g-prod:
+      layout: tiled
+      panes:
+        - kubie_sc2gprod:
+            - kubie ctx aks-prod
+            - kubie ns argocd
+        - kubie_sc2gprod:
+            - kubie ctx aks-prod
+            - kubie ns argocd
+        - kubie_sc2gprod:
+            - kubie ctx aks-prod
+            - kubie ns argocd
+        - kubie_sc2gprod:
+            - kubie ctx aks-prod
             - kubie ns argocd
