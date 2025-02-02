@@ -24,13 +24,13 @@ conform.setup({
 		-- have other formatters configured.
 		["_"] = { "trim_whitespace" },
 	},
-	-- format_on_save = function(bufnr)
-	-- 	-- Disable with a global or buffer-local variable
-	-- 	if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
-	-- 		return
-	-- 	end
-	-- 	return { timeout_ms = 500, lsp_fallback = true }
-	-- end,
+	format_on_save = function(bufnr)
+		-- Disable with a global or buffer-local variable
+		if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+			return
+		end
+		return { timeout_ms = 500, lsp_fallback = true }
+	end,
 })
 conform.formatters.shfmt = {
 	prepend_args = { "-i", "2" },
@@ -39,11 +39,11 @@ conform.formatters.shfmt = {
 }
 
 vim.api.nvim_create_user_command("FormatToggle", function(args)
-	if vim.b.disable_autoformat == true then
+	if vim.g.disable_autoformat == true then
 		-- FormatDisable! will disable formatting just for this buffer
-		vim.b.disable_autoformat = false
+		vim.g.disable_autoformat = false
 	else
-		vim.b.disable_autoformat = true
+		vim.g.disable_autoformat = true
 	end
 end, {
 	desc = "Toggle autoformat-on-save",
