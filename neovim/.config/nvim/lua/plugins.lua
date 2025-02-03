@@ -57,15 +57,25 @@ require("lazy").setup({
 			require("plugin-configs.lsp")
 		end,
 	},
+
 	{
-		"Saghen/blink.cmp",
-		config = function()
-			require("plugin-configs.blink")
-		end,
+		-- Autocompletion
+		"hrsh7th/nvim-cmp",
 		dependencies = {
+			-- Snippet Engine & its associated nvim-cmp source
 			"L3MON4D3/LuaSnip",
+			"saadparwaiz1/cmp_luasnip",
+
+			-- Adds LSP completion capabilities
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-path",
+
+			-- Adds a number of user-friendly snippets
+			"rafamadriz/friendly-snippets",
 		},
-		version = "v0.*",
+		config = function()
+			require("plugin-configs.nvim-cmp")
+		end,
 	},
 
 	-- Useful plugin to show you pending keybinds.
@@ -357,13 +367,13 @@ require("lazy").setup({
 			vim.g.catppuccin_flavour = "latte"
 		end,
 	},
-	-- {
-	-- 	"epwalsh/obsidian.nvim",
-	-- 	version = "*",
-	-- 	config = function()
-	-- 		require("plugin-configs.obsidian")
-	-- 	end,
-	-- },
+	{
+		"epwalsh/obsidian.nvim",
+		version = "*",
+		config = function()
+			require("plugin-configs.obsidian")
+		end,
+	},
 	{
 		"LudoPinelli/comment-box.nvim",
 		config = function()
