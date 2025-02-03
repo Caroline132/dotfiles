@@ -386,4 +386,10 @@ require("lazy").setup({
 			require("plugin-configs.kustomize")
 		end,
 	},
+	{
+		"quentingruber/pomodoro.nvim",
+		config = function()
+			require("plugin-configs.pomodoro")
+		end,
+	},
 })

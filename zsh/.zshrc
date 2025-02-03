@@ -42,6 +42,7 @@ zle -N down-line-or-beginning-search
 ###########
 # aliases
 ###########
+alias kubectl=kubecolor
 alias ls="exa -g --time-style long-iso"
 alias kcac='kubectl cost --service-port 9003 --service-name opencost --kubecost-namespace opencost --allocation-path /allocation/compute'
 alias rk="rakkess"
@@ -274,3 +275,6 @@ fpath+=~/.zfunc
 # Created by `pipx` on 2024-04-22 22:19:55
 export PATH="$PATH:/home/caro/.local/bin"
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
+# Make "kubecolor" borrow the same completion logic as "kubectl"
+compdef kubecolor=kubectl
