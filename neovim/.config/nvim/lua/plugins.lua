@@ -57,7 +57,6 @@ require("lazy").setup({
 			require("plugin-configs.lsp")
 		end,
 	},
-
 	{
 		-- Autocompletion
 		"hrsh7th/nvim-cmp",
@@ -77,6 +76,7 @@ require("lazy").setup({
 			require("plugin-configs.nvim-cmp")
 		end,
 	},
+
 
 	-- Useful plugin to show you pending keybinds.
 	{
