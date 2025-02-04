@@ -13,7 +13,7 @@ conform.setup({
 		yaml = { "yamlfmt" },
 		markdown = { "prettier" },
 		graphql = { "prettier" },
-		lua = { "stylua" },
+		-- lua = { "stylua" },
 		python = { "isort", "black" },
 		go = { "goimports", "gofmt" },
 		sh = { "shfmt" },
