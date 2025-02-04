@@ -106,7 +106,7 @@ require("neodev").setup()
 
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
--- capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+capabilites = require('blink.cmp').get_lsp_capabilities(capabilities)
 local default_options = {
 	capabilities = capabilities,
 	on_attach = on_attach,
@@ -128,6 +128,9 @@ local function setup_servers()
 		if lspconfig[name] == "gopls" then
 			local gopls_opts = require("lsp.gopls")
 			default_options = vim.tbl_deep_extend("force", default_options, gopls_opts)
+		end
+		if lspconfig[name] == "lua_ls" then
+			default_options = require("lsp.lua_ls")
 		end
 		lspconfig[name].setup(default_options)
 	end
