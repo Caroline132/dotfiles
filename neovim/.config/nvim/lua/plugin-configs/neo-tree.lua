@@ -16,8 +16,8 @@ require("neo-tree").setup({
 			event = "neo_tree_buffer_enter",
 			handler = function()
 				vim.cmd([[
-          setlocal relativenumber
-        ]])
+	  setlocal relativenumber
+	  ]])
 			end,
 		},
 
@@ -142,7 +142,7 @@ require("neo-tree").setup({
 			["s"] = "open_vsplit",
 			["<c-s>"] = "split_with_window_picker",
 			["<c-v>"] = "vsplit_with_window_picker",
-			["t"] = "open_tabnew",
+			["t"] = "none",
 			-- ["<cr>"] = "open_drop",
 			-- ["t"] = "open_tab_drop",
 			["w"] = "open_with_window_picker",
@@ -224,6 +224,8 @@ require("neo-tree").setup({
 		-- instead of relying on nvim autocmd events.
 		window = {
 			mappings = {
+				["tf"] = "find_files",
+				["tg"] = "grep",
 				["<bs>"] = "navigate_up",
 				["."] = "set_root",
 				["H"] = "toggle_hidden",
@@ -252,7 +254,22 @@ require("neo-tree").setup({
 			},
 		},
 
-		commands = {}, -- Add a custom command or override a global one using the same function name
+		commands = {
+			find_files = function(state)
+				local path = state.tree:get_node().path
+				require("telescope.builtin").find_files({
+					cwd = path,
+					hidden = true,
+				})
+			end,
+			grep = function(state)
+				local path = state.tree:get_node().path
+				require("telescope.builtin").live_grep({
+					cwd = path,
+					hidden = true,
+				})
+			end,
+		}, -- Add a custom command or override a global one using the same function name
 	},
 	buffers = {
 		follow_current_file = {
