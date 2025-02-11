@@ -260,6 +260,7 @@ require("neo-tree").setup({
 				require("telescope.builtin").find_files({
 					cwd = path,
 					hidden = true,
+					no_ignore = true,
 				})
 			end,
 			grep = function(state)
