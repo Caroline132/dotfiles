@@ -165,11 +165,11 @@ vim.keymap.set("n", "<leader>sk", require("telescope.builtin").keymaps, { desc =
 vim.keymap.set("n", "<leader>sb", require("telescope.builtin").buffers, { desc = "[S]earch [B]uffers" })
 local dir = require("telescope.utils").buffer_dir()
 vim.keymap.set("n", "<leader>sF", function()
-  require("telescope.builtin").find_files({
-    hidden = true,
-    cwd = dir,
-    no_ignore = true,
-  })
+	require("telescope.builtin").find_files({
+		hidden = true,
+		cwd = dir,
+		no_ignore = true,
+	})
 end, { desc = "[S]earch [F]iles in dir" })
 vim.keymap.set("n", "<leader>sf", function()
 	require("telescope.builtin").find_files({
@@ -181,10 +181,10 @@ vim.keymap.set("n", "<leader>sh", require("telescope.builtin").help_tags, { desc
 vim.keymap.set("n", "<leader>sw", require("telescope.builtin").grep_string, { desc = "[S]earch current [W]ord" })
 vim.keymap.set("n", "<leader>sg", require("telescope.builtin").live_grep, { desc = "[S]earch by [G]rep" })
 vim.keymap.set("n", "<leader>sG", function()
-  require("telescope.builtin").live_grep({
-    hidden = true,
-    cwd = dir,
-  })
+	require("telescope.builtin").live_grep({
+		hidden = true,
+		cwd = dir,
+	})
 end, { desc = "[S]earch by [G]rep in dir" })
 vim.keymap.set("n", "<leader>sd", require("telescope.builtin").diagnostics, { desc = "[S]earch [D]iagnostics" })
 vim.keymap.set("n", "<leader>sr", require("telescope.builtin").resume, { desc = "[S]earch [R]esume" })
