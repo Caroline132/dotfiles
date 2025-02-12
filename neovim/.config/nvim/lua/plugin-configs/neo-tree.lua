@@ -322,4 +322,5 @@ require("neo-tree").setup({
 })
 vim.cmd([[nnoremap \ :Neotree reveal<cr>]])
 vim.keymap.set({ "n" }, "<leader>tn", "<cmd>Neotree show toggle<cr>", { desc = "Neotree filesystem toggle" })
+vim.keymap.set({ "n" }, "<leader>f", "<cmd>Neotree filesystem focus toggle left<cr>", { desc = "Neotree explorer" })
 vim.keymap.set({ "n" }, "<leader>F", "<cmd>Neotree filesystem focus reveal left<cr>", { desc = "Neotree show file" })

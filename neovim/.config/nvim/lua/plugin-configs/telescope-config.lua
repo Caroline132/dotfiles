@@ -223,3 +223,45 @@ vim.keymap.set(
 	require("telescope").extensions.advanced_git_search.checkout_reflog,
 	{ desc = "Advanced Reflog" }
 )
+
+
+local function grep_find_files()
+    local builtin = require("telescope.builtin")
+
+    builtin.find_files({
+        attach_mappings = function(prompt_bufnr)
+            local actions = require("telescope.actions")
+            local action_state = require("telescope.actions.state")
+
+            -- Map <C-a> inside the picker to select all files
+            vim.api.nvim_buf_set_keymap(prompt_bufnr, "i", "<localleader>a", "", {
+                callback = function()
+                    actions.select_all(prompt_bufnr)
+                end,
+                noremap = true,
+                silent = true
+            })
+
+            actions.select_default:replace(function()
+                local current_picker = action_state.get_current_picker(prompt_bufnr)
+                local selections = current_picker:get_multi_selection()
+
+                -- Select all files if no selection is made
+                if vim.tbl_isempty(selections) then
+                    selections = current_picker:get_all_entries()
+                end
+
+                local paths = vim.tbl_map(function(e)
+                    return e.path
+                end, selections)
+
+                actions.close(prompt_bufnr)
+                builtin.live_grep({ search_dirs = paths })
+            end)
+
+            return true
+        end
+    })
+end
+
+vim.keymap.set("n", "<localleader>f", grep_find_files, { desc = "Grep in filtered files' directories" })
