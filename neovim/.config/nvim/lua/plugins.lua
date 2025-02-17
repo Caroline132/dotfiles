@@ -393,4 +393,14 @@ require("lazy").setup({
 			require("plugin-configs.pomodoro")
 		end,
 	},
+	{
+		"olimorris/codecompanion.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-treesitter/nvim-treesitter",
+		},
+		config = function()
+			require("plugin-configs.codecompanion")
+		end,
+	},
 })
