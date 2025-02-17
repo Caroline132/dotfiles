@@ -31,19 +31,125 @@ vim.api.nvim_set_keymap("t", "<c-x>", [[<C-\><C-n><esc><cr>]], { noremap = true,
 
 vim.keymap.set("i", "jk", "<esc>", { desc = "escape" })
 
-vim.keymap.set("n", "<localleader>dd", function()
-	local split_filenames = {}
-	for _, buf in ipairs(vim.fn.getbufinfo()) do
-		if buf.hidden == 0 and buf.listed == 1 then
-			table.insert(split_filenames, buf.name)
+-- Diffs between two selected buffers
+local pick_buffer = function(callback)
+    require("telescope.builtin").buffers({
+        attach_mappings = function(_, map)
+            map("i", "<CR>", function(prompt_bufnr)
+                local selection = require("telescope.actions.state").get_selected_entry()
+                local bufnr = selection.bufnr
+                -- Close the picker and call the callback with the selected buffer
+                require("telescope.actions").close(prompt_bufnr)
+                callback(bufnr)
+            end)
+            return true
+        end,
+    })
+end
+
+--- Get list of active buffers from the current list of windows
+---@param windows number[]
+---@return number[]
+local function get_shown_buffers(windows)
+    local buf_numbers = {}
+    for _, win in ipairs(windows) do
+        local buf = vim.api.nvim_win_get_buf(win)
+        local bufinfo = vim.fn.getbufinfo(buf)[1]
+        if bufinfo and bufinfo.hidden == 0 and bufinfo.listed == 1 then
+            buf_numbers[#buf_numbers + 1] = buf
+        end
+    end
+    return buf_numbers
+end
+
+vim.keymap.set("n", "<localleader>db", function()
+    local windows = vim.api.nvim_list_wins()
+    local buf_numbers = get_shown_buffers(windows)
+
+    if #buf_numbers == 2 then
+        -- If there are exactly 2 visible buffers, diff them automatically
+        vim.cmd("tabnew " .. vim.fn.fnameescape(vim.fn.getbufinfo(buf_numbers[1])[1].name))
+        vim.cmd("vertical diffsplit " .. vim.fn.fnameescape(vim.fn.getbufinfo(buf_numbers[2])[1].name))
+        vim.cmd.normal({ args = { "gg" }, bang = true })
+    else
+        local first_bufnumber, second_bufnumber
+
+        -- Pick the first buffer
+        pick_buffer(function(bufnr)
+            first_bufnumber = bufnr
+            -- After picking the first buffer, immediately ask for the second buffer
+            if first_bufnumber then
+                pick_buffer(function(bufnr)
+                    second_bufnumber = bufnr
+                    -- Proceed to diff if both buffers are selected
+                    if first_bufnumber and second_bufnumber then
+                        local first_buf = vim.fn.getbufinfo(first_bufnumber)[1]
+                        local second_buf = vim.fn.getbufinfo(second_bufnumber)[1]
+
+                        if first_buf and second_buf then
+                            vim.cmd("tabnew " .. vim.fn.fnameescape(first_buf.name))
+                            vim.cmd("vertical diffsplit " .. vim.fn.fnameescape(second_buf.name))
+                            vim.cmd.normal({ args = { "gg" }, bang = true })
+                        end
+                    end
+                end)
+            end
+        end)
+    end
+end, { desc = "Diff between open buffers" })
+
+-- Diffs between current windows
+local pick_window = function()
+	-- Use nvim-window-picker to choose the window
+	return require("window-picker").pick_window({
+		hint = "floating-big-letter",
+	})
+end
+
+--- Get list of active buffers from current list of windows
+---@param windows number[]
+---@return number[]
+local function get_shown_buffers(windows)
+	local buf_numbers = {}
+	for _, win in ipairs(windows) do
+		local buf = vim.api.nvim_win_get_buf(win)
+		local bufinfo = vim.fn.getbufinfo(buf)[1]
+		if bufinfo and bufinfo.hidden == 0 and bufinfo.listed == 1 then
+			buf_numbers[#buf_numbers + 1] = buf
 		end
 	end
-	if #split_filenames == 2 then
-		vim.cmd.tabnew(split_filenames[1])
-		vim.cmd("vertical diffsplit " .. split_filenames[2])
+	return buf_numbers
+end
+
+
+vim.keymap.set("n", "<localleader>dd", function()
+	local windows = vim.api.nvim_list_wins()
+	local buf_numbers = get_shown_buffers(windows)
+
+	if #buf_numbers == 2 then
+		-- If there are exactly 2 visible buffers, diff them automatically
+		vim.cmd("tabnew " .. vim.fn.fnameescape(vim.fn.getbufinfo(buf_numbers[1])[1].name))
+		vim.cmd("vertical diffsplit " .. vim.fn.fnameescape(vim.fn.getbufinfo(buf_numbers[2])[1].name))
 		vim.cmd.normal({ args = { "gg" }, bang = true })
 	else
-		vim.notify("Can't diff with more than 2 files open")
+		-- Otherwise, ask the user to pick two windows
+		local first_win = pick_window()
+		if not first_win then return end
+
+		local second_win = pick_window()
+		if not second_win then return end
+
+		local first_bufnumber = vim.api.nvim_win_get_buf(first_win)
+		local second_bufnumber = vim.api.nvim_win_get_buf(second_win)
+
+		local first_buf = vim.fn.getbufinfo(first_bufnumber)[1]
+		local second_buf = vim.fn.getbufinfo(second_bufnumber)[1]
+
+		if first_buf and second_buf then
+			vim.cmd("tabnew " .. vim.fn.fnameescape(first_buf.name))
+			vim.cmd("vertical diffsplit " .. vim.fn.fnameescape(second_buf.name))
+			vim.cmd.normal({ args = { "gg" }, bang = true })
+		end
 	end
 end, { desc = "Diff between open files" })
 
@@ -83,9 +189,9 @@ vim.keymap.set("n", "td", function()
 end, { desc = "Toggle diagnostic" })
 
 vim.keymap.set("n", "]t", function()
-  vim.cmd.tabnext()
+	vim.cmd.tabnext()
 end, { desc = "Next tab" })
 vim.keymap.set("n", "[t", function()
-  vim.cmd.tabprevious()
+	vim.cmd.tabprevious()
 end, { desc = "Previous tab" })
 vim.keymap.set("n", "<leader>x", "<cmd>tabclose<CR>", { desc = "Close tab" })
