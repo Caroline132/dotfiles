@@ -318,25 +318,20 @@ require("lazy").setup({
 	{
 		"supermaven-inc/supermaven-nvim",
 		config = function()
-			require("supermaven-nvim").setup({
-				keymaps = {
-					accept_suggestion = "<C-f>",
-					clear_suggestion = "<C-]>",
-					accept_word = "<C-j>",
-				},
-			})
+			require("plugin-configs.supermaven-nvim")
 		end,
+		enabled = vim.fn.getenv("WSL_INTEROP") == vim.NIL,
 	},
-	-- {
-	-- 	"Exafunction/codeium.nvim",
-	-- 	dependencies = {
-	-- 		"nvim-lua/plenary.nvim",
-	-- 		"hrsh7th/nvim-cmp",
-	-- 	},
-	-- 	config = function()
-	-- 		require("codeium").setup({})
-	-- 	end,
-	-- },
+	{
+		"zbirenbaum/copilot.vim",
+		cmd = "Copilot",
+		event = "InsertEnter",
+		config = function()
+			require("plugin-configs.copilot")
+		end,
+		enabled = vim.fn.getenv("WSL_INTEROP") ~= vim.NIL,
+	},
+
 	-- Themes
 	{
 		"folke/tokyonight.nvim",
@@ -392,5 +387,16 @@ require("lazy").setup({
 		config = function()
 			require("plugin-configs.pomodoro")
 		end,
+	},
+	{
+		"olimorris/codecompanion.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-treesitter/nvim-treesitter",
+		},
+		config = function()
+			require("plugin-configs.codecompanion")
+		end,
+		enabled = vim.fn.getenv("WSL_INTEROP") ~= vim.NIL,
 	},
 })
