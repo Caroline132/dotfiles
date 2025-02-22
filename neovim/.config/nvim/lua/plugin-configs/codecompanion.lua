@@ -1,4 +1,3 @@
-local env = vim.env.ENV
 require("codecompanion").setup({
   strategies = {
     chat = {
@@ -8,12 +7,7 @@ require("codecompanion").setup({
       adapter = "copilot",
     },
   },
-  enabled = function()
-      print(env)
-      if env == "work" then
-          return true
-      else
-          return false
-      end
-  end,
 })
+
+  vim.keymap.set({"i", "n", "x"}, "<leader>ta", "<Cmd>CodeCompanionChat toggle<CR>", { desc = "Toggle CodeCompanionChat"})
+  vim.keymap.set({"n", "x"}, "<localleader>a", "<Cmd>CodeCompanionActions <CR>", { desc = "Toggle CodeCompanionActions"})

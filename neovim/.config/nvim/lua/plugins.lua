@@ -320,14 +320,16 @@ require("lazy").setup({
 		config = function()
 			require("plugin-configs.supermaven-nvim")
 		end,
+		enabled = vim.fn.getenv("WSL_INTEROP") == vim.NIL,
 	},
 	{
-		"zbirenbaum/copilot.lua",
+		"zbirenbaum/copilot.vim",
 		cmd = "Copilot",
 		event = "InsertEnter",
 		config = function()
-			require("copilot").setup({})
+			require("plugin-configs.copilot")
 		end,
+		enabled = vim.fn.getenv("WSL_INTEROP") ~= vim.NIL,
 	},
 
 	-- Themes
@@ -395,5 +397,6 @@ require("lazy").setup({
 		config = function()
 			require("plugin-configs.codecompanion")
 		end,
+		enabled = vim.fn.getenv("WSL_INTEROP") ~= vim.NIL,
 	},
 })
