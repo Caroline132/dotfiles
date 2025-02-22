@@ -318,25 +318,18 @@ require("lazy").setup({
 	{
 		"supermaven-inc/supermaven-nvim",
 		config = function()
-			require("supermaven-nvim").setup({
-				keymaps = {
-					accept_suggestion = "<C-f>",
-					clear_suggestion = "<C-]>",
-					accept_word = "<C-j>",
-				},
-			})
+			require("plugin-configs.supermaven-nvim")
 		end,
 	},
-	-- {
-	-- 	"Exafunction/codeium.nvim",
-	-- 	dependencies = {
-	-- 		"nvim-lua/plenary.nvim",
-	-- 		"hrsh7th/nvim-cmp",
-	-- 	},
-	-- 	config = function()
-	-- 		require("codeium").setup({})
-	-- 	end,
-	-- },
+	{
+		"zbirenbaum/copilot.lua",
+		cmd = "Copilot",
+		event = "InsertEnter",
+		config = function()
+			require("copilot").setup({})
+		end,
+	},
+
 	-- Themes
 	{
 		"folke/tokyonight.nvim",

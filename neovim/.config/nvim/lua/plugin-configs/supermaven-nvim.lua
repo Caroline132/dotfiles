@@ -1,19 +1,17 @@
 local env = vim.env.ENV
 require("codecompanion").setup({
-  strategies = {
-    chat = {
-      adapter = "copilot",
-    },
-    inline = {
-      adapter = "copilot",
-    },
+  keymaps = {
+    accept_suggestion = "<C-f>",
+    clear_suggestion = "<C-]>",
+    accept_word = "<C-j>",
   },
   enabled = function()
       print(env)
       if env == "work" then
-          return true
-      else
           return false
+      else
+          return true
       end
   end,
 })
+
