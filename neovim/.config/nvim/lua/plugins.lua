@@ -205,11 +205,10 @@ require("lazy").setup({
 	-- 	end,
 	-- },
 	{
-		"MeanderingProgrammer/markdown.nvim",
-		name = "render-markdown", -- Only needed if you have another plugin named markdown.nvim
+		"MeanderingProgrammer/render-markdown.nvim",
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
 		config = function()
-			require("render-markdown").setup({})
+		  require("plugin-configs.render-markdown")
 		end,
 	},
 	{
@@ -323,9 +322,7 @@ require("lazy").setup({
 		enabled = vim.fn.getenv("WSL_INTEROP") == vim.NIL,
 	},
 	{
-		"zbirenbaum/copilot.vim",
-		cmd = "Copilot",
-		event = "InsertEnter",
+		"github/copilot.vim",
 		config = function()
 			require("plugin-configs.copilot")
 		end,
@@ -398,5 +395,11 @@ require("lazy").setup({
 			require("plugin-configs.codecompanion")
 		end,
 		enabled = vim.fn.getenv("WSL_INTEROP") ~= vim.NIL,
+	},
+	{
+		"maskudo/devdocs.nvim",
+		config = function()
+			require("plugin-configs.devdocs")
+		end,
 	},
 })
