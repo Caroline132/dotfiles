@@ -62,7 +62,7 @@ end
 vim.keymap.set("n", "<localleader>db", function()
 	local buf_names = get_listed_buffers()
 
-	if 2 == 2 then
+	if #buf_names == 2 then
 		-- Open the first buffer in a new tab
 		vim.cmd("tabnew " .. vim.fn.fnameescape(buf_names[1]))
 		-- Open the second buffer in a vertical diff split
