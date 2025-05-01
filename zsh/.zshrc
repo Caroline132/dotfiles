@@ -257,7 +257,7 @@ eval "$(zoxide init zsh)"
 # zplugin load ellie/atuin
 # zprof
 
-complete -o nospace -C /usr/bin/tk tk
+complete -o nospace -C /usr/local/bin/tk tk
 
 # Load a few important annexes, without Turbo
 # (this is currently required for annexes)
@@ -278,3 +278,6 @@ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 # Make "kubecolor" borrow the same completion logic as "kubectl"
 compdef kubecolor=kubectl
+
+# put go bin in the path
+export PATH="$PATH:$HOME/go/bin"
