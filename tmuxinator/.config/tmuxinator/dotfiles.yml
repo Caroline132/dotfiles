@@ -4,15 +4,12 @@ name: dotfiles
 root: ~/
 
 windows:
-  - caro-dotfiles:
+  - dotfiles:
       layout: even-horizontal
       panes:
         - caro-dotfiles:
             - cd ~/dotfiles/
             - nvim .
-  - alex-dotfiles:
-      layout: even-horizontal
-      panes:
         - alex-dotfiles:
             - cd ~/repos/alex_dotfiles/
             - nvim .

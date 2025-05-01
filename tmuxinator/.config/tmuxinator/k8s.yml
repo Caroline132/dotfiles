@@ -43,26 +43,29 @@ root: ~/
 # post: tmux -CC attach -t psql
 
 windows:
-  - all:
+  - unclass:
+      layout: tiled
+      panes:
+        - kubie_dev:
+            - kubie ctx aksdev
+            - kubie ns argocd
+        - kubie_test:
+            - kubie ctx akstest
+            - kubie ns argocd
+        - kubie_prod:
+            - kubie ctx aksprod-b
+            - kubie ns argocd
+  - sc2g:
       layout: tiled
       panes:
         - kubie_sc2gsandbox:
             - kubie ctx aks-sandbox
             - kubie ns argocd
-        - kubie_dev:
-            - kubie ctx aksdev
-            - kubie ns argocd
         - kubie_sc2gdev:
             - kubie ctx aks-dev
             - kubie ns argocd
-        - kubie_test:
-            - kubie ctx akstest
-            - kubie ns argocd
         - kubie_sc2gtest:
             - kubie ctx aks-test
-            - kubie ns argocd
-        - kubie_prod:
-            - kubie ctx aksprod-b
             - kubie ns argocd
         - kubie_sc2gprod:
             - kubie ctx aks-prod
