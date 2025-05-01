@@ -192,3 +192,6 @@ vim.keymap.set("n", "[t", function()
 	vim.cmd.tabprevious()
 end, { desc = "Previous tab" })
 vim.keymap.set("n", "<leader>x", "<cmd>tabclose<CR>", { desc = "Close tab" })
+
+vim.keymap.set({"n", "x"}, "<localleader>yj", ":YamlToJson<cr>", { desc = "Convert YAML to JSON" })
+vim.keymap.set({"n", "x"}, "<localleader>jy", ":JsonToYaml<cr>", { desc = "Convert JSON to YAML" })

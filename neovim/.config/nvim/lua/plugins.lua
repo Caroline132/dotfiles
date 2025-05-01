@@ -402,4 +402,11 @@ require("lazy").setup({
 			require("plugin-configs.devdocs")
 		end,
 	},
+	{
+		"jemag/nvim-jsonnet",
+		branch = "local-setup",
+		config = function()
+			require("plugin-configs.nvim-jsonnet")
+		end,
+	},
 })
