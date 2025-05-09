@@ -1,38 +1,43 @@
 # ~/.tmuxinator/work.yml
 
 name: code-work
-root: ~/repos
+root: ~/repos/ADO-projects/AKS
 
 windows:
   - automation:
       layout: even-horizontal
       panes:
         - terraform-modules:
-            - cd ~/repos/TerraformModules/
+            - cd ~/repos/ADO-projects/AKS/TerraformModules/
         - automation:
-            - cd ~/repos/Automation/
+            - cd ~/repos/ADO-projects/AKS/Automation/
   - argo-platform:
       layout: even-horizontal
       panes:
         - argo-platform:
-            - cd ~/repos/ArgoPlatform/
+            - cd ~/repos/ADO-projects/AKS/ArgoPlatform/
   - wiki:
       layout: even-horizontal
       panes:
         - wiki:
-            - cd ~/repos/Wiki/
+            - cd ~/repos/ADO-projects/AKS/Wiki/
   - cicd:
       layout: even-horizontal
       panes:
         - systeminformer:
-            - cd ~/repos/SystemInformer/
+            - cd ~/repos/ADO-projects/AKS/SystemInformer/
         - argoexample:
-            - cd ~/repos/ArgoExample/
+            - cd ~/repos/ADO-projects/AKS/ArgoExample/
   - images:
       layout: even-horizontal
       panes:
         - images:
             - cd ~/repos/Images/
+  - ADO-repos:
+      layout: even-horizontal
+      panes:
+        - images:
+            - cd ~/repos/ADO-projects/AKS/
   - repos:
       layout: even-horizontal
       panes:
