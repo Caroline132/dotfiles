@@ -18,6 +18,8 @@ conform.setup({
 		go = { "goimports", "gofmt" },
 		sh = { "shfmt" },
 		zsh = { "shfmt" },
+		jsonnet = { "jsonnetfmt" },
+		libsonnet = { "jsonnetfmt" },
 		-- Use the "*" filetype to run formatters on all filetypes.
 		-- ["*"] = { "codespell" },
 		-- Use the "_" filetype to run formatters on filetypes that don't
