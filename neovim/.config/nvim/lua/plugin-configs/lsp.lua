@@ -45,7 +45,6 @@ end
 -- mason-lspconfig requires that these setup functions are called in this order
 -- before setting up the servers.
 require("mason").setup()
-require("mason-lspconfig").setup()
 
 -- Enable the following language servers
 --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
@@ -115,7 +114,10 @@ local default_options = {
 -- Ensure the servers above are installed
 local mason_lspconfig = require("mason-lspconfig")
 
-require("mason-lspconfig").setup()
+require("mason-lspconfig").setup({
+  ensure_installed = {},
+  automatic_enable = false,
+})
 require("mason-tool-installer").setup({
 	ensure_installed = servers,
 })
@@ -125,12 +127,16 @@ local installed_servers = require("mason-lspconfig").get_installed_servers()
 
 local function setup_servers()
 	for _, name in pairs(installed_servers) do
-		if lspconfig[name] == "gopls" then
-			local gopls_opts = require("lsp.gopls")
+		if name == "gopls" then
+			local gopls_opts = require("plugin-configs.lsp.gopls")
 			default_options = vim.tbl_deep_extend("force", default_options, gopls_opts)
 		end
-		if lspconfig[name] == "lua_ls" then
-			default_options = require("lsp.lua_ls")
+		if name == "lua_ls" then
+			default_options = require("plugin-configs.lsp.lua_ls")
+		end
+		if name == "jsonnet_ls" then
+		  local jsonnetls_opts = require("plugin-configs.lsp.jsonnetls")
+		  default_options = vim.tbl_deep_extend("force", default_options, jsonnetls_opts)
 		end
 		lspconfig[name].setup(default_options)
 	end

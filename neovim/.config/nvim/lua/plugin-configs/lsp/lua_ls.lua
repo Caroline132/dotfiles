@@ -23,8 +23,8 @@ return {
       }
     },
   },
-  capabilities = require("lsp.handlers").capabilities,
-  on_attach = require("lsp.handlers").on_attach,
+  -- capabilities = require("lsp.handlers").capabilities,
+  -- on_attach = require("lsp.handlers").on_attach,
   flags = {
     debounce_text_changes = 150,
     allow_incremental_sync = true,

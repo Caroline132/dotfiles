@@ -274,7 +274,7 @@ require("neo-tree").setup({
 	},
 	buffers = {
 		follow_current_file = {
-			enabled = true, -- This will find and focus the file in the active buffer every time
+			enabled = false, -- This will find and focus the file in the active buffer every time
 			--              -- the current file is changed while the tree is open.
 			leave_dirs_open = true, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
 		},
@@ -322,5 +322,5 @@ require("neo-tree").setup({
 })
 vim.cmd([[nnoremap \ :Neotree reveal<cr>]])
 vim.keymap.set({ "n" }, "<leader>tn", "<cmd>Neotree show toggle<cr>", { desc = "Neotree filesystem toggle" })
-vim.keymap.set({ "n" }, "<leader>f", "<cmd>Neotree filesystem focus toggle left<cr>", { desc = "Neotree explorer" })
+-- vim.keymap.set({ "n" }, "<leader>f", "<cmd>Neotree filesystem focus toggle left<cr>", { desc = "Neotree explorer" })
 vim.keymap.set({ "n" }, "<leader>F", "<cmd>Neotree filesystem focus reveal left<cr>", { desc = "Neotree show file" })
