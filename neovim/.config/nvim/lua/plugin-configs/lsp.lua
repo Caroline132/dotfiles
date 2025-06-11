@@ -129,7 +129,7 @@ local function setup_servers()
   for _, name in pairs(installed_servers) do
     -- Create a new options table for each server
     local options = vim.deepcopy(default_options)
-    
+
     if name == "gopls" then
       local gopls_opts = require("plugin-configs.lsp.gopls")
       options = vim.tbl_deep_extend("force", options, gopls_opts)
@@ -141,7 +141,7 @@ local function setup_servers()
       local jsonnetls_opts = require("plugin-configs.lsp.jsonnetls")
       options = vim.tbl_deep_extend("force", options, jsonnetls_opts)
     end
-    
+
     lspconfig[name].setup(options)
   end
 end
