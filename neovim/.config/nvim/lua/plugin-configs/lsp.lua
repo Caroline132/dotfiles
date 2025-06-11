@@ -105,7 +105,7 @@ require("neodev").setup()
 
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilites = require('blink.cmp').get_lsp_capabilities(capabilities)
+capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)
 local default_options = {
 	capabilities = capabilities,
 	on_attach = on_attach,
@@ -126,20 +126,24 @@ local lspconfig = require("lspconfig")
 local installed_servers = require("mason-lspconfig").get_installed_servers()
 
 local function setup_servers()
-	for _, name in pairs(installed_servers) do
-		if name == "gopls" then
-			local gopls_opts = require("plugin-configs.lsp.gopls")
-			default_options = vim.tbl_deep_extend("force", default_options, gopls_opts)
-		end
-		if name == "lua_ls" then
-			default_options = require("plugin-configs.lsp.lua_ls")
-		end
-		if name == "jsonnet_ls" then
-		  local jsonnetls_opts = require("plugin-configs.lsp.jsonnetls")
-		  default_options = vim.tbl_deep_extend("force", default_options, jsonnetls_opts)
-		end
-		lspconfig[name].setup(default_options)
-	end
+  for _, name in pairs(installed_servers) do
+    -- Create a new options table for each server
+    local options = vim.deepcopy(default_options)
+    
+    if name == "gopls" then
+      local gopls_opts = require("plugin-configs.lsp.gopls")
+      options = vim.tbl_deep_extend("force", options, gopls_opts)
+    end
+    if name == "lua_ls" then
+      options = require("plugin-configs.lsp.lua_ls")
+    end
+    if name == "jsonnet_ls" then
+      local jsonnetls_opts = require("plugin-configs.lsp.jsonnetls")
+      options = vim.tbl_deep_extend("force", options, jsonnetls_opts)
+    end
+    
+    lspconfig[name].setup(options)
+  end
 end
 
 setup_servers()

@@ -11,6 +11,11 @@ windows:
             - cd ~/repos/ADO-projects/AKS/TerraformModules/
         - automation:
             - cd ~/repos/ADO-projects/AKS/Automation/
+  - k8s-platform:
+      layout: even-horizontal
+      panes:
+        - k8s-platform:
+            - cd ~/repos/ADO-projects/AKS/kubernetes-platform/
   - argo-platform:
       layout: even-horizontal
       panes:
