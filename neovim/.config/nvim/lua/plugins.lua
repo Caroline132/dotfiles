@@ -319,15 +319,15 @@ require("lazy").setup({
 		config = function()
 			require("plugin-configs.supermaven-nvim")
 		end,
-		enabled = vim.fn.getenv("WSL_INTEROP") == vim.NIL,
+		-- enabled = vim.fn.getenv("WSL_INTEROP") == vim.NIL,
 	},
-	{
-		"github/copilot.vim",
-		config = function()
-			require("plugin-configs.copilot")
-		end,
-		enabled = vim.fn.getenv("WSL_INTEROP") ~= vim.NIL,
-	},
+	-- {
+	-- 	"github/copilot.vim",
+	-- 	config = function()
+	-- 		require("plugin-configs.copilot")
+	-- 	end,
+	-- 	enabled = vim.fn.getenv("WSL_INTEROP") ~= vim.NIL,
+	-- },
 
 	-- Themes
 	{

@@ -1,10 +1,10 @@
 require("pomodoro").setup({
 	start_at_launch = false,
-	work_duration = 1,
+	work_duration = 25,
 	break_duration = 5,
 	delay_duration = 1,
 	long_break_duration = 15,
-	breaks_before_long = 4,
+	breaks_before_long = 3,
 })
 
 vim.keymap.set("n", "<localleader>ps", "<cmd>PomodoroStart<cr>", { desc = "Start Pomodoro" })

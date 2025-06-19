@@ -64,7 +64,6 @@ vim.opt.textwidth = 0
 -- Set clipboard to system's
 vim.o.clipboard = "unnamedplus"
 
-vim.opt.mouse = ""
 -- Keep cursor in middle
 --vim.opt.scrolloff = 999
 
