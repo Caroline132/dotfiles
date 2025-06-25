@@ -21,7 +21,8 @@ vim.o.expandtab = true
 vim.o.swapfile = false
 
 -- Enable mouse mode
-vim.o.mouse = "a"
+-- vim.o.mouse = "a"
+vim.o.mouse = ""
 
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
@@ -65,7 +66,7 @@ vim.opt.textwidth = 0
 vim.o.clipboard = "unnamedplus"
 
 -- Keep cursor in middle
---vim.opt.scrolloff = 999
+vim.opt.scrolloff = 999
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
