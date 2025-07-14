@@ -97,6 +97,7 @@ local servers = {
 	"tflint",
 	"typescript-language-server",
 	"vim-language-server",
+	"yaml-language-server",
 	"yamlls",
 	"yamlfmt",
 }
@@ -140,6 +141,20 @@ local function setup_servers()
     if name == "jsonnet_ls" then
       local jsonnetls_opts = require("plugin-configs.lsp.jsonnetls")
       options = vim.tbl_deep_extend("force", options, jsonnetls_opts)
+    end
+    if name == "yamlls" then
+      local yamlls_opts = require("yaml-companion").setup({
+        lspconfig = {
+          settings = {
+            yaml = {
+              format = {
+                enable = false,
+              },
+            },
+          },
+        },
+      })
+      options = vim.tbl_deep_extend("force", options, yamlls_opts)
     end
 
     lspconfig[name].setup(options)

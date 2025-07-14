@@ -187,9 +187,7 @@ require("lazy").setup({
 		"iamcco/markdown-preview.nvim",
 		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
 		ft = { "markdown" },
-		build = function()
-			vim.fn["mkdp#util#install"]()
-		end,
+		build = function() vim.fn["mkdp#util#install"]() end,
 		config = function()
 			require("plugin-configs.markdown-preview")
 		end,
@@ -408,5 +406,67 @@ require("lazy").setup({
 		config = function()
 			require("plugin-configs.nvim-jsonnet")
 		end,
+	},
+	{
+		"cuducos/yaml.nvim",
+		opts = {
+			ft = { "yaml", "yaml.helm-values" },
+		},
+		ft = { "yaml", "yaml.helm-values" }, -- optional
+		keys = {
+			{ "<leader>yv", "<cmd>YAMLView<cr>", desc = "Yaml view" },
+			{ "<leader>yyk", "<cmd>YAMLYankKey +<cr>", desc = "Yank key" },
+			{ "<leader>yyv", "<cmd>YAMLYankValue +<cr>", desc = "Yank value" },
+			{ "<leader>yyf", "<cmd>YAMLYank +<cr>", desc = "Yank full" },
+			{ "<leader>ys", "<cmd>YAMLSnacks<cr>", desc = "Yaml search" },
+		},
+		dependencies = {
+			{ "nvim-treesitter/nvim-treesitter" },
+			{ "folke/snacks.nvim" }, -- optional
+		},
+	},
+	{
+		-- "someone-stole-my-name/yaml-companion.nvim",
+		"astephanh/yaml-companion.nvim",
+		branch = "kubernetes_crd_detection",
+		lazy = true,
+		dependencies = {
+			{ "neovim/nvim-lspconfig" },
+			{ "nvim-lua/plenary.nvim" },
+			{ "nvim-telescope/telescope.nvim" },
+		},
+		config = function()
+			require("telescope").load_extension("yaml_schema")
+			require("plugin-configs.yaml-companion")
+		end,
+		ft = { "yaml", "json" },
+	},
+	{
+		"linrongbin16/gitlinker.nvim",
+		config = function()
+			require("plugin-configs.gitlinker")
+		end,
+		lazy = true,
+		keys = {
+			{ mode = { "n", "x" }, "<leader>gly", "<cmd>GitLink<cr>", silent = true, noremap = true, desc = "Copy git permlink to clipboard" },
+			{ mode = { "n", "x" }, "<leader>glg", "<cmd>GitLink!<cr>", silent = true, noremap = true, desc = "Open git permlink in browser" },
+			-- blame
+			{
+				mode = { "n", "x" },
+				"<leader>glb",
+				"<cmd>GitLink blame<cr>",
+				silent = true,
+				noremap = true,
+				desc = "Copy git blame link to clipboard",
+			},
+			{
+				mode = { "n", "x" },
+				"<leader>glB",
+				"<cmd>GitLink! blame<cr>",
+				silent = true,
+				noremap = true,
+				desc = "Open git blame link in browser",
+			},
+		},
 	},
 })

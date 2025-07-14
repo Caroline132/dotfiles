@@ -66,7 +66,7 @@ vim.opt.textwidth = 0
 vim.o.clipboard = "unnamedplus"
 
 -- Keep cursor in middle
-vim.opt.scrolloff = 999
+-- vim.opt.scrolloff = 999
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
@@ -96,3 +96,27 @@ vim.g.editorconfig = true
 vim.o.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,t:blinkon0"
 
 vim.g.disable_autoformat = true
+
+-- Large file optimizations
+vim.opt.maxmempattern = 2000000  -- Increase maximum amount of memory in Kb used for pattern matching
+vim.opt.redrawtime = 10000       -- Time in milliseconds for redrawing the display
+vim.opt.synmaxcol = 240          -- Maximum column in which to search for syntax items
+vim.opt.lazyredraw = true        -- Don't redraw screen while executing macros
+
+-- Disable features that might slow down large files
+local function disable_features_for_large_files()
+  local max_filesize = 100 * 1024 -- 100 KB in bytes
+  local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(0))
+  
+  if ok and stats and stats.size > max_filesize then
+    vim.opt_local.foldmethod = "manual"
+    vim.opt_local.syntax = "off"
+    vim.opt_local.relativenumber = false
+    vim.opt_local.bufhidden = "unload"
+  end
+end
+
+-- Create autocommand for large files
+vim.api.nvim_create_autocmd({"BufReadPre"}, {
+  callback = disable_features_for_large_files,
+})
