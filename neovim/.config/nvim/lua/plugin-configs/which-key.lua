@@ -23,6 +23,7 @@ require("which-key").add({
 	{ "<leader>b", group = "[B]ufferline" },
 	{ "<leader>h", group = "Git [H]unk" },
 	{ "<leader>o", group = "[O]bsidian" },
+	{ "<localleader>a", group = "[A]I"},
 	{ "<localleader>c", group = "[C]omment box"},
 	{ "<localleader>c", group = "[C]omment box", mode = "v" },
 	{ "<localleader>r", group = "[K]ustomize", mode = "v" },

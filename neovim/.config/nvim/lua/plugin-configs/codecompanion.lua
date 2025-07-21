@@ -1,11 +1,14 @@
 require("codecompanion").setup({
   extensions = {
+    history = {
+      enabledd = true,
+    },
     mcphub = {
       callback = "mcphub.extensions.codecompanion",
       opts = {
-        make_vars = true,       
+        make_vars = true,
         make_slash_commands = true,
-        show_result_in_chat = true  
+        show_result_in_chat = true
       }
     }
   },
@@ -43,3 +46,4 @@ require("codecompanion").setup({
 
 vim.keymap.set({"i", "n", "x"}, "<leader>ta", "<Cmd>CodeCompanionChat toggle<CR>", { desc = "Toggle CodeCompanionChat"})
 vim.keymap.set({"n", "x"}, "<localleader>a", "<Cmd>CodeCompanionActions <CR>", { desc = "Toggle CodeCompanionActions"})
+vim.keymap.set({"n", "x"}, "<localleader>ah", "<Cmd>CodeCompanionHistory<CR>", { desc = "Toggle CodeCompanionHistory"})
