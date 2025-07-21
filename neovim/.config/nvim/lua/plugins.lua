@@ -407,6 +407,18 @@ require("lazy").setup({
 			require("plugin-configs.nvim-jsonnet")
 		end,
 	},
+    {
+		"ravitemer/mcphub.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+		build = "bundled_build.lua",  -- Bundles `mcp-hub` binary along with the neovim plugin
+		config = function()
+			require("mcphub").setup({
+				use_bundled_binary = true,  -- Use local `mcp-hub` binary
+			})
+		end,
+	}, -- {
 	{
 		"cuducos/yaml.nvim",
 		opts = {
@@ -468,5 +480,5 @@ require("lazy").setup({
 				desc = "Open git blame link in browser",
 			},
 		},
-	},
+	}
 })
