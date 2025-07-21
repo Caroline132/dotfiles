@@ -27,4 +27,5 @@ require("which-key").add({
 	{ "<localleader>c", group = "[C]omment box", mode = "v" },
 	{ "<localleader>r", group = "[K]ustomize", mode = "v" },
 	{ "<localleader>p", group = "[P]omodoro" },
+	{ "<leader>y", group = "[Y]aml" },
 })

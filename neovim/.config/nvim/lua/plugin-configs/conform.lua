@@ -11,6 +11,7 @@ conform.setup({
 		html = { "prettier" },
 		json = { "prettier" },
 		yaml = { "yamlfmt" },
+		yml = { "yamlfmt" },
 		markdown = { "prettier" },
 		graphql = { "prettier" },
 		-- lua = { "stylua" },
