@@ -98,14 +98,9 @@ require("lazy").setup({
 		-- Set lualine as statusline
 		"nvim-lualine/lualine.nvim",
 		-- See `:help lualine.txt`
-		opts = {
-			options = {
-				icons_enabled = false,
-				theme = "onedark",
-				component_separators = "|",
-				section_separators = "",
-			},
-		},
+		config = function()
+			require("plugin-configs.lualine")
+		end,
 	},
 
 	{
@@ -264,17 +259,17 @@ require("lazy").setup({
 			require("plugin-configs.toggleterm")
 		end,
 	},
-	{
-		"utilyre/barbecue.nvim",
-		name = "barbecue",
-		config = function()
-			require("barbecue").setup()
-		end,
-		dependencies = {
-			"SmiteshP/nvim-navic",
-			"nvim-tree/nvim-web-devicons", -- optional dependency
-		},
-	},
+	-- {
+	-- 	"utilyre/barbecue.nvim",
+	-- 	name = "barbecue",
+	-- 	config = function()
+	-- 		require("barbecue").setup()
+	-- 	end,
+	-- 	dependencies = {
+	-- 		"SmiteshP/nvim-navic",
+	-- 		"nvim-tree/nvim-web-devicons", -- optional dependency
+	-- 	},
+	-- },
 	-- Highlight todo, notes, etc in comments
 	{
 		"folke/todo-comments.nvim",
