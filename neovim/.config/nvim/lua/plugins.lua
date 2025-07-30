@@ -264,16 +264,30 @@ require("lazy").setup({
 			require("plugin-configs.toggleterm")
 		end,
 	},
+	-- {
+	-- 	"utilyre/barbecue.nvim",
+	-- 	name = "barbecue",
+	-- 	config = function()
+	-- 		require("barbecue").setup()
+	-- 	end,
+	-- 	dependencies = {
+	-- 		"SmiteshP/nvim-navic",
+	-- 		"nvim-tree/nvim-web-devicons", -- optional dependency
+	-- 	},
+	-- },
 	{
-		"utilyre/barbecue.nvim",
-		name = "barbecue",
-		config = function()
-			require("barbecue").setup()
-		end,
+		'Bekaboo/dropbar.nvim',
+		-- optional, but required for fuzzy finder support
 		dependencies = {
-			"SmiteshP/nvim-navic",
-			"nvim-tree/nvim-web-devicons", -- optional dependency
+			'nvim-telescope/telescope-fzf-native.nvim',
+			build = 'make'
 		},
+		config = function()
+			local dropbar_api = require('dropbar.api')
+			vim.keymap.set('n', '<Leader>;', dropbar_api.pick, { desc = 'Pick symbols in winbar' })
+			vim.keymap.set('n', '[;', dropbar_api.goto_context_start, { desc = 'Go to start of current context' })
+			vim.keymap.set('n', '];', dropbar_api.select_next_context, { desc = 'Select next context' })
+		end
 	},
 	-- Highlight todo, notes, etc in comments
 	{
