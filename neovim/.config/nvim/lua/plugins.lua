@@ -97,6 +97,10 @@ require("lazy").setup({
 	{
 		-- Set lualine as statusline
 		"nvim-lualine/lualine.nvim",
+		dependencies = {
+			"SmiteshP/nvim-navic",
+			lazy = true,
+		},
 		-- See `:help lualine.txt`
 		config = function()
 			require("plugin-configs.lualine")
