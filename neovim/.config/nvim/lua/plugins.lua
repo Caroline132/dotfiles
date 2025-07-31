@@ -319,13 +319,13 @@ require("lazy").setup({
 		end,
 		-- enabled = vim.fn.getenv("WSL_INTEROP") == vim.NIL,
 	},
-	-- {
-	-- 	"github/copilot.vim",
-	-- 	config = function()
-	-- 		require("plugin-configs.copilot")
-	-- 	end,
-	-- 	enabled = vim.fn.getenv("WSL_INTEROP") ~= vim.NIL,
-	-- },
+	{
+		"github/copilot.vim",
+		config = function()
+			require("plugin-configs.copilot")
+		end,
+		enabled = vim.fn.getenv("WSL_INTEROP") ~= vim.NIL,
+	},
 
 	-- Themes
 	{
@@ -386,6 +386,7 @@ require("lazy").setup({
 	{
 		"olimorris/codecompanion.nvim",
 		dependencies = {
+			"ravitemer/codecompanion-history.nvim",
 			"nvim-lua/plenary.nvim",
 			"nvim-treesitter/nvim-treesitter",
 		},
