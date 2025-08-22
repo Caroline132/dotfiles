@@ -156,6 +156,14 @@ local convert_to_list = function(list_type)
     end
 end
 
+local numbered_to_bullet = function(line_num)
+    local line = vim.api.nvim_buf_get_lines(0, line_num - 1, line_num, false)[1]
+    -- Replace leading numbered list (e.g., "  1. ") with bullet ("  - ")
+    line = line:gsub("^(%s*)%d+%.%s+", "%1- ")
+    vim.api.nvim_buf_set_lines(0, line_num - 1, line_num, true, { line })
+end
+
+
 -- Add these keymaps with your other keymaps
 vim.keymap.set({ "n", "v" }, "<leader>ol", function()
     convert_to_list("bullet")
@@ -166,7 +174,7 @@ vim.keymap.set({ "n", "v" }, "<leader>ok", function()
 end, { desc = "Convert to checklist", noremap = true })
 
 -- Add the keymap (put this with your other keymaps)
-vim.keymap.set({ "n", "v" }, "<localleader>s", function()
+vim.keymap.set({ "n", "v" }, "<leader>o-", function()
     toggle_strikethrough()
 end, { desc = "Toggle strikethrough", noremap = true })
 vim.keymap.set({ "n", "v" }, "<leader>ox", function()
@@ -186,3 +194,19 @@ vim.keymap.set("n", "<leader>oq", "<cmd>ObsidianQuickSwitch<cr>", { desc = "Quic
 vim.keymap.set("n", "<leader>ot", "<cmd>ObsidianTags<cr>", { desc = "Today" })
 vim.keymap.set("n", "<leader>oT", "<cmd>ObsidianTemplate<cr>", { desc = "Template" })
 vim.keymap.set("n", "<leader>oy", "<cmd>ObsidianYesterday<cr>", { desc = "Yesterday" })
+vim.keymap.set({ "n", "v" }, "<leader>o.", function()
+    local mode = vim.api.nvim_get_mode().mode
+    if mode == "V" or mode == "v" then
+        vim.cmd([[execute "normal! \<ESC>"]])
+        local vstart = vim.fn.getcharpos("'<")
+        local vend = vim.fn.getcharpos("'>")
+        local line_start = vstart[2]
+        local line_end = vend[2]
+        for line_num = line_start, line_end do
+            numbered_to_bullet(line_num)
+        end
+    else
+        local line_num = unpack(vim.api.nvim_win_get_cursor(0))
+        numbered_to_bullet(line_num)
+    end
+end, { desc = "Convert numbered list to bullet", noremap = true })

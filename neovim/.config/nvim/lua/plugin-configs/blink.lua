@@ -9,8 +9,9 @@ require("blink-cmp").setup({
     ["<C-u>"] = { "scroll_documentation_up", "fallback" },
     ["<C-j>"] = { "snippet_forward", "fallback" },
     ["<C-k>"] = { "snippet_backward", "fallback" },
-    ["<C-f>"] = { "fallback" },
+    ["<C-x>"] = { "fallback" },
     ['<C-b>'] = { function(cmp) cmp.show({ providers = { 'path' } }) end },
+    ["<C-f>"] = { "fallback" }, -- Prevent Blink from using <C-f>
   },
   -- accept = {
   --     enabled = true,

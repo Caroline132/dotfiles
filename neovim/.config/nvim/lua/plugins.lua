@@ -317,7 +317,7 @@ require("lazy").setup({
 		config = function()
 			require("plugin-configs.supermaven-nvim")
 		end,
-		-- enabled = vim.fn.getenv("WSL_INTEROP") == vim.NIL,
+		enabled = vim.fn.getenv("WSL_INTEROP") == vim.NIL,
 	},
 	{
 		"github/copilot.vim",
@@ -481,5 +481,9 @@ require("lazy").setup({
 				desc = "Open git blame link in browser",
 			},
 		},
+	},
+	{
+		"grafana/vim-alloy",
+		ft = { "alloy" },
 	}
 })
