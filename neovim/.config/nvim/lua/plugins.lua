@@ -485,5 +485,12 @@ require("lazy").setup({
 	{
 		"grafana/vim-alloy",
 		ft = { "alloy" },
+	},
+	{
+		"kevinhwang91/nvim-ufo",
+		dependencies = { "kevinhwang91/promise-async" },
+		config = function()
+			require("plugin-configs.nvim-ufo")
+		end,
 	}
 })
