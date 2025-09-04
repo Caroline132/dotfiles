@@ -7,9 +7,6 @@ vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = tr
 vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- Diagnostic keymaps
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
-
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
 
 -- Move to window using the <ctrl> hjkl keys
@@ -33,18 +30,14 @@ vim.keymap.set("i", "jk", "<esc>", { desc = "escape" })
 
 -- Diffs between two selected buffers
 local pick_buffer = function(callback)
-	require("telescope.builtin").buffers({
-		attach_mappings = function(_, map)
-			map("i", "<CR>", function(prompt_bufnr)
-				local selection = require("telescope.actions.state").get_selected_entry()
-				local bufnr = selection.bufnr
-				-- Close the picker and call the callback with the selected buffer
-				require("telescope.actions").close(prompt_bufnr)
-				callback(bufnr)
-			end)
-			return true
-		end,
-	})
+  require("snacks").picker.buffers({
+    confirm = function(picker, item)
+      picker:close()
+      if item and item.bufnr then
+        callback(item.bufnr)
+      end
+    end,
+  })
 end
 
 --- Get a list of all listed buffer names
