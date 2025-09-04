@@ -423,22 +423,6 @@ require("lazy").setup({
 		},
 	},
 	{
-		-- "someone-stole-my-name/yaml-companion.nvim",
-		"astephanh/yaml-companion.nvim",
-		branch = "kubernetes_crd_detection",
-		lazy = true,
-		dependencies = {
-			{ "neovim/nvim-lspconfig" },
-			{ "nvim-lua/plenary.nvim" },
-			{ "nvim-telescope/telescope.nvim" },
-		},
-		config = function()
-			require("telescope").load_extension("yaml_schema")
-			require("plugin-configs.yaml-companion")
-		end,
-		ft = { "yaml", "json" },
-	},
-	{
 		"linrongbin16/gitlinker.nvim",
 		config = function()
 			require("plugin-configs.gitlinker")
