@@ -257,7 +257,7 @@ require("neo-tree").setup({
 		commands = {
 			find_files = function(state)
 				local path = state.tree:get_node().path
-				require("telescope.builtin").find_files({
+				require("snacks").picker.files({
 					cwd = path,
 					hidden = true,
 					no_ignore = true,
@@ -265,7 +265,7 @@ require("neo-tree").setup({
 			end,
 			grep = function(state)
 				local path = state.tree:get_node().path
-				require("telescope.builtin").live_grep({
+				require("snacks").picker.grep({
 					cwd = path,
 					hidden = true,
 				})
