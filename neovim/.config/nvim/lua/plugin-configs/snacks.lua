@@ -15,6 +15,11 @@ Snacks.setup({
     matcher = {
       frecency = true,
     },
+    formatters = {
+      file = {
+        truncate = 80,
+      },
+    },
     layouts = {
       dropdown = {
         layout = {
@@ -43,8 +48,20 @@ Snacks.setup({
           ["<Esc>"] = { "close", mode = { "n", "i" } },
           ["<c-d>"] = { "preview_scroll_down", mode = { "i", "n" } },
           ["<c-u>"] = { "preview_scroll_up", mode = { "i", "n" } },
-          ["<c-n>"] = { "list_scroll_down", mode = { "i", "n" } },
-          ["<c-p>"] = { "list_scroll_up", mode = { "i", "n" } },
+          ["<c-f>"] = { "list_scroll_down", mode = { "i", "n" } },
+          ["<c-b>"] = { "list_scroll_up", mode = { "i", "n" } },
+          ["<c-t>"] = { "edit_tab", mode = { "i", "n" } },
+          ["<a-f>"] = { "toggle_follow", mode = { "i", "n" } },
+          ["<a-d>"] = { "toggle_hidden", mode = { "i", "n" } },
+          ["<a-i>"] = { "toggle_ignored", mode = { "i", "n" } },
+          ["<a-m>"] = { "toggle_maximize", mode = { "i", "n" } },
+          ["<a-p>"] = { "toggle_preview", mode = { "i", "n" } },
+        },
+      },
+      list = {
+        keys = {
+          ["<c-d>"] = { "preview_scroll_down", mode = { "i", "n" } },
+          ["<c-u>"] = { "preview_scroll_up", mode = { "i", "n" } },
         },
       },
     },
