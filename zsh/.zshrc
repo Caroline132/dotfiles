@@ -281,3 +281,6 @@ compdef kubecolor=kubectl
 
 # put go bin in the path
 export PATH="$PATH:$HOME/go/bin"
+
+# opencode
+export PATH=/home/caro/.opencode/bin:$PATH

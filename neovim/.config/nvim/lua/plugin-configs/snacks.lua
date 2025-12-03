@@ -1,10 +1,11 @@
 local Snacks = require("snacks")
 Snacks.setup({
+  terminal = { enabled = true },
   bigfile = { enabled = false },
   dashboard = { enabled = false },
   explorer = { enabled = false },
   indent = { enabled = false },
-  input = { enabled = false },
+  input = { enabled = true },
   notifier = {
     enabled = false,
     timeout = 3000,

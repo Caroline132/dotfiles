@@ -28,5 +28,6 @@ require("which-key").add({
 	{ "<localleader>r", group = "[K]ustomize", mode = "v" },
 	{ "<localleader>p", group = "[P]omodoro" },
 	{ "<localleader>a", group = "[A]I" },
+	{ "<localleader>o", group = "[O]pencode" },
 	{ "<leader>y", group = "[Y]aml" },
 })

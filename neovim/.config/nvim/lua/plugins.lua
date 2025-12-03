@@ -379,6 +379,12 @@ require("lazy").setup({
 		end,
 		enabled = vim.fn.getenv("WSL_INTEROP") ~= vim.NIL,
 	},
+	  {
+		"NickvanDyke/opencode.nvim",
+		config = function()
+		  require("plugin-configs.opencode")
+		end,
+	  },
 	{
 		"maskudo/devdocs.nvim",
 		config = function()
