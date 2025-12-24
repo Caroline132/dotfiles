@@ -101,6 +101,8 @@ local servers = {
 	"yamlls",
 	"yamlfmt",
 }
+
+vim.lsp.enable("nushell")
 -- Setup neovim lua configuration
 require("neodev").setup()
 

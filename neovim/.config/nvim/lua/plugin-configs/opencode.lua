@@ -6,9 +6,6 @@ vim.keymap.set({ "n", "x" }, "<localleader>oa", function() require("opencode").a
 vim.keymap.set({ "n", "x" }, "<localleader>ox", function() require("opencode").select() end,                          { desc = "Execute opencode action…" })
 vim.keymap.set({ "n", "x" },    "<localleader>op", function() require("opencode").prompt("@this") end,                   { desc = "Add to opencode" })
 vim.keymap.set({ "n", "t" }, "<F11>", function() require("opencode").toggle() end,                          { desc = "Toggle opencode" })
-vim.keymap.set("n", "<C-d>", function()
-  require("opencode").command("messages_half_page_down")
-end, { desc = "opencode half page down" })
 -- You may want these if you stick with the opinionated "<C-a>" and "<C-x>" above — otherwise consider "<leader>o".
 vim.keymap.set("n", "+", "<C-a>", { desc = "Increment", noremap = true })
 vim.keymap.set("n", "-", "<C-x>", { desc = "Decrement", noremap = true })

@@ -18,6 +18,7 @@ vim.defer_fn(function()
 			"bash",
 			"yaml",
 			"jsonnet",
+			"nu",
 		},
 
 		-- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
