@@ -1,4 +1,13 @@
 command_timeout = 1000
+
+# Add shell indicator to prompt format
+format = """$shell$all"""
+
+[shell]
+disabled = false
+nu_indicator = "[NU](bold green) "
+zsh_indicator = ""
+
 [kubernetes]
 disabled = false
 [terraform]

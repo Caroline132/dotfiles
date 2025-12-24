@@ -1,0 +1,9 @@
+exit
+cd ~
+exit
+nu
+exit
+nu
+exit
+ls
+exit

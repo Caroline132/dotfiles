@@ -21,3 +21,6 @@
 # Carapace completion integration
 # Generate and cache the completions, then source them
 source ~/.cache/carapace/init.nu
+source ~/.zoxide.nu
+mkdir ($nu.data-dir | path join "vendor/autoload")
+starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
