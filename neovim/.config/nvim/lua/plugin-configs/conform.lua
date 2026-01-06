@@ -14,11 +14,12 @@ conform.setup({
 		yml = { "yamlfmt" },
 		markdown = { "prettier" },
 		graphql = { "prettier" },
-		-- lua = { "stylua" },
+		lua = { "stylua" },
 		python = { "isort", "black" },
 		go = { "goimports", "gofmt" },
 		sh = { "shfmt" },
 		zsh = { "shfmt" },
+	        nu = { "nufmt" },
 		-- Use the "*" filetype to run formatters on all filetypes.
 		-- ["*"] = { "codespell" },
 		-- Use the "_" filetype to run formatters on filetypes that don't

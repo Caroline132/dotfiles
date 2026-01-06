@@ -1,9 +1,8 @@
+eixt
 exit
-cd ~
-exit
-nu
-exit
-nu
-exit
-ls
+let data = [<\n>  { uuid: "a77bfed7-eb23-4a13-ad5c-c741d10a0ce3", name: "05619d30-5583-4ccd-a259-6f406fec2dd1" }<\n>]<\n>
+data
+$data
+$data | where uuid == "a77bfed7-eb23-4a13-ad5c-c741d10a0ce3" | get name | first<\n>
+$data | where uuid == "a77bfed7-eb23-4a13-ad5c-c741d10a0ce3" | get name <\n>
 exit
