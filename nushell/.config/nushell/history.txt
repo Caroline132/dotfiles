@@ -6,3 +6,22 @@ $data
 $data | where uuid == "a77bfed7-eb23-4a13-ad5c-c741d10a0ce3" | get name | first<\n>
 $data | where uuid == "a77bfed7-eb23-4a13-ad5c-c741d10a0ce3" | get name <\n>
 exit
+az keyvault secret show --vault-name $"aks-($env.ENVIRONMENT)-kv-sc2g" --name "trivy-token" | from json | get value
+az keyvault secret show --vault-name $"aks-sandbox-kv-sc2g" --name "trivy-token" | from json | get value
+az keyvault secret show --vault-name $"aks-sandbox-kv-sc2g" --name "trivy-token"
+az login
+az keyvault secret show --vault-name $"aks-sandbox-kv-sc2g" --name "trivy-token"
+az keyvault secret show --vault-name $"aks-sandbox-kv-sc2g" --name "trivy-token" | from json | get value
+help ignore
+help ignore -h
+nu -c "az keyvault secret show --vault-name nonexistent --name nonexistent | ignore"    
+az keyvault secret show --vault-name nonexistent --name nonexistent | ignore
+do { az keyvault secret show --vault-name nonexistent --name nonexistent } complete | get exit_code
+do { az keyvault secret show --vault-name nonexistent --name nonexistent } complete 
+do { az keyvault secret show --vault-name nonexistent --name nonexistent } | complete | get exit_code
+do { az keyvault secret show --vault-name nonexistent --name nonexistent } | complete 
+az keyvault secret show --vault-name nonexistent --name nonexistent } | complete 
+az keyvault secret show --vault-name nonexistent --name nonexistent | complete 
+exit
+g a
+exit
