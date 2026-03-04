@@ -1,151 +1,202 @@
---  This function gets run when an LSP connects to a particular buffer.
-local on_attach = function(_, bufnr)
-	-- NOTE: Remember that lua is a real programming language, and as such it is possible
-	-- to define small helper and utility functions so you don't have to repeat yourself
-	-- many times.
-	--
-	-- In this case, we create a function that lets us more easily define mappings specific
-	-- for LSP related items. It sets the mode, buffer and description for us each time.
-	local nmap = function(keys, func, desc)
-		if desc then
-			desc = "LSP: " .. desc
-		end
+-- LSP keymaps via LspAttach autocmd (modern approach)
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("UserLspConfig", { clear = true }),
+  callback = function(ev)
+    local bufnr = ev.buf
 
-		vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
-	end
+    local nmap = function(keys, func, desc)
+      if desc then
+        desc = "LSP: " .. desc
+      end
+      vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
+    end
 
-	nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
-	nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+    nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
+    nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
 
-	nmap("gd", require("snacks").picker.lsp_definitions, "[G]oto [D]efinition")
-	nmap("gr", require("snacks").picker.lsp_references, "[G]oto [R]eferences")
-	nmap("gI", require("snacks").picker.lsp_implementations, "[G]oto [I]mplementation")
-	nmap("<leader>D", require("snacks").picker.lsp_type_definitions, "Type [D]efinition")
-	nmap("<leader>ds", require("snacks").picker.lsp_symbols, "[D]ocument [S]symbols")
-	nmap("<leader>ws", require("snacks").picker.lsp_workspace_symbols, "[W]orkspace [S]symbols")
+    nmap("gd", require("snacks").picker.lsp_definitions, "[G]oto [D]efinition")
+    nmap("gr", require("snacks").picker.lsp_references, "[G]oto [R]eferences")
+    nmap("gI", require("snacks").picker.lsp_implementations, "[G]oto [I]mplementation")
+    nmap("<leader>D", require("snacks").picker.lsp_type_definitions, "Type [D]efinition")
+    nmap("<leader>ds", require("snacks").picker.lsp_symbols, "[D]ocument [S]symbols")
+    nmap("<leader>ws", require("snacks").picker.lsp_workspace_symbols, "[W]orkspace [S]symbols")
 
-	-- See `:help K` for why this keymap
-	nmap("K", vim.lsp.buf.hover, "Hover Documentation")
-	nmap("<C-q>", vim.lsp.buf.signature_help, "Signature Documentation")
+    nmap("K", vim.lsp.buf.hover, "Hover Documentation")
+    nmap("<C-q>", vim.lsp.buf.signature_help, "Signature Documentation")
 
-	-- Lesser used LSP functionality
-	nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
-	nmap("<leader>wa", vim.lsp.buf.add_workspace_folder, "[W]orkspace [A]dd Folder")
-	nmap("<leader>wr", vim.lsp.buf.remove_workspace_folder, "[W]orkspace [R]emove Folder")
-	nmap("<leader>wl", function()
-		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-	end, "[W]orkspace [L]ist Folders")
+    nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+    nmap("<leader>wa", vim.lsp.buf.add_workspace_folder, "[W]orkspace [A]dd Folder")
+    nmap("<leader>wr", vim.lsp.buf.remove_workspace_folder, "[W]orkspace [R]emove Folder")
+    nmap("<leader>wl", function()
+      print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+    end, "[W]orkspace [L]ist Folders")
 
-	-- Create a command `:Format` local to the LSP buffer
-	vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
-		vim.lsp.buf.format()
-	end, { desc = "Format current buffer with LSP" })
-end
+    vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
+      vim.lsp.buf.format()
+    end, { desc = "Format current buffer with LSP" })
+  end,
+})
 
--- mason-lspconfig requires that these setup functions are called in this order
--- before setting up the servers.
+-- Mason setup for installing tools
 require("mason").setup()
 
--- Enable the following language servers
---  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
---
---  Add any additional override configuration in the following tables. They will be passed to
---  the `settings` field of the server config. You must look up that documentation yourself.
---
---  If you want to override the default filetypes that your language server will attach to you can
---  define the property 'filetypes' to the map in question.
+-- Tools to install via Mason (formatters, linters, debuggers, etc.)
+local tools = {
+  "codespell",
+  "delve",
+  "editorconfig-checker",
+  "eslint_d",
+  "gofumpt",
+  "goimports",
+  "goimports-reviser",
+  "golangci-lint",
+  "golines",
+  "gomodifytags",
+  "gotests",
+  "gotestsum",
+  "hadolint",
+  "iferr",
+  "impl",
+  "java-debug-adapter",
+  "java-test",
+  "prettier",
+  "revive",
+  "stylua",
+  "tflint",
+  "yamlfmt",
+}
+
+-- LSP servers to install via Mason (using Mason package names)
 local servers = {
-	"angular-language-server",
-	-- "ansible-language-server",
-	-- "azure-pipelines-language-server",
-	"bash-language-server",
-	"bicep-lsp",
-	"clangd",
-	"codespell",
-	"delve",
-	"dockerfile-language-server",
-	"editorconfig-checker",
-	"eslint_d",
-	"gofumpt",
-	"goimports",
-	"goimports-reviser",
-	"golangci-lint",
-	"golangci-lint-langserver",
-	"golines",
-	"gomodifytags",
-	"gopls",
-	"gotests",
-	"gotestsum",
-	"hadolint",
-	"helm-ls",
-	"html-lsp",
-	"iferr",
-	"impl",
-	"java-debug-adapter",
-	"java-test",
-	"jdtls",
-	"json-lsp",
-	"jsonnet-language-server",
-	"lua-language-server",
-	"marksman",
-	"prettier",
-	"pyright",
-	"revive",
-	"rust-analyzer",
-	"stylua",
-	"terraform-ls",
-	"tflint",
-	"typescript-language-server",
-	"vim-language-server",
-	"yaml-language-server",
-	"yamlls",
-	"yamlfmt",
+  "angular-language-server",
+  "bash-language-server",
+  "bicep-lsp",
+  "clangd",
+  "dockerfile-language-server",
+  "golangci-lint-langserver",
+  "gopls",
+  "helm-ls",
+  "html-lsp",
+  "jdtls",
+  "json-lsp",
+  "jsonnet-language-server",
+  "lua-language-server",
+  "marksman",
+  "pyright",
+  "rust-analyzer",
+  "terraform-ls",
+  "typescript-language-server",
+  "vim-language-server",
+  "yaml-language-server",
 }
-
-vim.lsp.enable("nushell")
--- Setup neovim lua configuration
-require("neodev").setup()
-
--- nvim-cmp supports additional completion capabilities, so broadcast that to servers
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)
-local default_options = {
-	capabilities = capabilities,
-	on_attach = on_attach,
-}
-
--- Ensure the servers above are installed
-local mason_lspconfig = require("mason-lspconfig")
 
 require("mason-lspconfig").setup({
   ensure_installed = {},
   automatic_enable = false,
 })
 require("mason-tool-installer").setup({
-	ensure_installed = servers,
+  ensure_installed = vim.list_extend(vim.deepcopy(servers), tools),
 })
 
-local lspconfig = require("lspconfig")
-local installed_servers = require("mason-lspconfig").get_installed_servers()
+-- Setup neovim lua configuration
+require("neodev").setup()
 
-local function setup_servers()
-  for _, name in pairs(installed_servers) do
-    -- Create a new options table for each server
-    local options = vim.deepcopy(default_options)
+-- Capabilities with blink.cmp
+local capabilities = require("blink.cmp").get_lsp_capabilities()
 
-    if name == "gopls" then
-      local gopls_opts = require("plugin-configs.lsp.gopls")
-      options = vim.tbl_deep_extend("force", options, gopls_opts)
-    end
-    if name == "lua_ls" then
-      options = require("plugin-configs.lsp.lua_ls")
-    end
-    if name == "jsonnet_ls" then
-      local jsonnetls_opts = require("plugin-configs.lsp.jsonnetls")
-      options = vim.tbl_deep_extend("force", options, jsonnetls_opts)
-    end
-    lspconfig[name].setup(options)
-  end
-end
+-- Default config applied to all servers via wildcard
+vim.lsp.config("*", {
+  capabilities = capabilities,
+})
 
-setup_servers()
+-- Server-specific configurations using vim.lsp.config
+-- Use lspconfig names (e.g., lua_ls, not lua-language-server)
+
+vim.lsp.config("angularls", {})
+vim.lsp.config("bashls", {})
+vim.lsp.config("bicep", {})
+vim.lsp.config("clangd", {})
+vim.lsp.config("dockerls", {})
+vim.lsp.config("golangci_lint_ls", {})
+vim.lsp.config("gopls", {
+  settings = {
+    gopls = {
+      completeUnimported = true,
+      usePlaceholders = true,
+      analyses = {
+        unusedparams = true,
+      },
+    },
+  },
+})
+vim.lsp.config("helm_ls", {})
+vim.lsp.config("html", {})
+vim.lsp.config("jdtls", {})
+vim.lsp.config("jsonls", {})
+vim.lsp.config("jsonnet_ls", {
+  cmd = { "jsonnet-language-server", "-t" },
+  settings = {
+    formatting = {
+      UseImplicitPlus = false,
+    },
+  },
+})
+vim.lsp.config("lua_ls", {
+  settings = {
+    Lua = {
+      diagnostics = {
+        enable = true,
+        disable = { "different-requires" },
+        globals = {
+          "P",
+          "vim",
+          "describe",
+          "it",
+          "before_each",
+          "after_each",
+          "teardown",
+          "pending",
+          "clear",
+        },
+      },
+      workspace = {
+        checkThirdParty = false,
+      },
+    },
+  },
+  flags = {
+    debounce_text_changes = 150,
+    allow_incremental_sync = true,
+  },
+})
+vim.lsp.config("marksman", {})
+vim.lsp.config("nushell", {})
+vim.lsp.config("pyright", {})
+vim.lsp.config("rust_analyzer", {})
+vim.lsp.config("terraformls", {})
+vim.lsp.config("ts_ls", {})
+vim.lsp.config("vimls", {})
+vim.lsp.config("yamlls", {})
+
+-- Enable all configured servers
+vim.lsp.enable("angularls")
+vim.lsp.enable("bashls")
+vim.lsp.enable("bicep")
+vim.lsp.enable("clangd")
+vim.lsp.enable("dockerls")
+vim.lsp.enable("golangci_lint_ls")
+vim.lsp.enable("gopls")
+vim.lsp.enable("helm_ls")
+vim.lsp.enable("html")
+vim.lsp.enable("jdtls")
+vim.lsp.enable("jsonls")
+vim.lsp.enable("jsonnet_ls")
+vim.lsp.enable("lua_ls")
+vim.lsp.enable("marksman")
+vim.lsp.enable("nushell")
+vim.lsp.enable("pyright")
+vim.lsp.enable("rust_analyzer")
+vim.lsp.enable("terraformls")
+vim.lsp.enable("ts_ls")
+vim.lsp.enable("vimls")
+vim.lsp.enable("yamlls")
