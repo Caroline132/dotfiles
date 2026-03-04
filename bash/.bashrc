@@ -130,3 +130,4 @@ set -o vi
 export PATH="$HOME/.local/bin:$PATH"
 eval "$(zoxide init bash)"
 export EDITOR='nvim'
+export PATH="$HOME/.local/bin:$PATH"
