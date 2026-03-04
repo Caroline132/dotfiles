@@ -16,28 +16,6 @@ windows:
       panes:
         - k8s-platform:
             - cd ~/repos/ADO-projects/AKS/kubernetes-platform/
-  - argo-platform:
-      layout: even-horizontal
-      panes:
-        - argo-platform:
-            - cd ~/repos/ADO-projects/AKS/ArgoPlatform/
-  - wiki:
-      layout: even-horizontal
-      panes:
-        - wiki:
-            - cd ~/repos/ADO-projects/AKS/Wiki/
-  - cicd:
-      layout: even-horizontal
-      panes:
-        - systeminformer:
-            - cd ~/repos/ADO-projects/AKS/SystemInformer/
-        - argoexample:
-            - cd ~/repos/ADO-projects/AKS/ArgoExample/
-  - images:
-      layout: even-horizontal
-      panes:
-        - images:
-            - cd ~/repos/Images/
   - ADO-repos:
       layout: even-horizontal
       panes:
