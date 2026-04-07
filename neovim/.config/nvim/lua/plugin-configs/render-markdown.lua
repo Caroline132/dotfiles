@@ -1,6 +1,7 @@
 require("render-markdown").setup({
   enabled = true,
-  file_types = { "markdown", "codecompanion" },
+  file_types = { "markdown", "codecompanion", "opencode_output" },
+  anti_conceal = { enabled = false },
   code = {
     -- Turn on / off code block & inline code rendering
     enabled = true,

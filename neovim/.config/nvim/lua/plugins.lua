@@ -367,24 +367,24 @@ require("lazy").setup({
 			require("plugin-configs.pomodoro")
 		end,
 	},
-	{
-		"olimorris/codecompanion.nvim",
-		dependencies = {
-			"ravitemer/codecompanion-history.nvim",
-			"nvim-lua/plenary.nvim",
-			"nvim-treesitter/nvim-treesitter",
-		},
-		config = function()
-			require("plugin-configs.codecompanion")
-		end,
-		enabled = vim.fn.getenv("WSL_INTEROP") ~= vim.NIL,
-	},
-	  {
-		"NickvanDyke/opencode.nvim",
-		config = function()
-		  require("plugin-configs.opencode")
-		end,
-	  },
+	-- {
+	-- 	"olimorris/codecompanion.nvim",
+	-- 	dependencies = {
+	-- 		"ravitemer/codecompanion-history.nvim",
+	-- 		"nvim-lua/plenary.nvim",
+	-- 		"nvim-treesitter/nvim-treesitter",
+	-- 	},
+	-- 	config = function()
+	-- 		require("plugin-configs.codecompanion")
+	-- 	end,
+	-- 	enabled = vim.fn.getenv("WSL_INTEROP") ~= vim.NIL,
+	-- },
+	 --  {
+		-- "NickvanDyke/opencode.nvim",
+		-- config = function()
+		--   require("plugin-configs.nvd-opencode")
+		-- end,
+	 --  },
 	{
 		"maskudo/devdocs.nvim",
 		config = function()
@@ -466,5 +466,15 @@ require("lazy").setup({
 		config = function()
 			require("plugin-configs.nvim-ufo")
 		end,
-	}
+	},
+	{
+		"sudo-tee/opencode.nvim",
+		config = function()
+			require("plugin-configs.opencode")
+		end,
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			-- render-markdown and blink.cmp already configured elsewhere
+		},
+	},
 })
