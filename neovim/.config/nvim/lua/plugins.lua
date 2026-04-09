@@ -135,8 +135,9 @@ require("lazy").setup({
 	{
 		-- Highlight, edit, and navigate code
 		"nvim-treesitter/nvim-treesitter",
+		branch = "main",
 		dependencies = {
-			"nvim-treesitter/nvim-treesitter-textobjects",
+			{ "nvim-treesitter/nvim-treesitter-textobjects", branch = "main" },
 		},
 		build = ":TSUpdate",
 		config = function()
@@ -459,13 +460,6 @@ require("lazy").setup({
 	{
 		"grafana/vim-alloy",
 		ft = { "alloy" },
-	},
-	{
-		"kevinhwang91/nvim-ufo",
-		dependencies = { "kevinhwang91/promise-async" },
-		config = function()
-			require("plugin-configs.nvim-ufo")
-		end,
 	},
 	{
 		"sudo-tee/opencode.nvim",

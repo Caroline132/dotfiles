@@ -7,6 +7,7 @@ require("opencode").setup({
 	default_global_keymaps = true,
 	keymap_prefix = "<leader>o",
 	ui = {
+		enable_treesitter_markdown = true,
 		position = "right",
 		window_width = 0.40,
 		display_model = true,
@@ -15,7 +16,6 @@ require("opencode").setup({
 		-- Don't persist state - always start fresh (no previous chat on toggle)
 		persist_state = false,
 		output = {
-			-- render-markdown.nvim is already configured
 			filetype = "opencode_output",
 		},
 	},
@@ -35,7 +35,7 @@ require("opencode").setup({
 	},
 	keymap = {
 		editor = {
-			["<F11>"] = { "open_input_new_session" }, -- Always open with new session
+			["<F11>"] = { "toggle", mode = { "n", "i" } },
 		},
 	},
 })
