@@ -16,11 +16,16 @@ windows:
       panes:
         - k8s-platform:
             - cd ~/repos/ADO-projects/AKS/kubernetes-platform/
-  - ADO-repos:
+  - wiki:
       layout: even-horizontal
       panes:
         - images:
-            - cd ~/repos/ADO-projects/AKS/
+            - cd ~/repos/ADO-projects/AKS/Wiki/
+  - k8s-debugging:
+      layout: even-horizontal
+      panes:
+        - images:
+            - cd ~/repos/ADO-projects/AKS/kubernetes-debugging/
   - repos:
       layout: even-horizontal
       panes:

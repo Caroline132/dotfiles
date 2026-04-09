@@ -61,7 +61,7 @@
       "environment": {
         "KUBECONFIG": "/home/caro/.kube/config"
       },
-      "enabled": false
+      "enabled": true
     },
     "aks": {
       "type": "local",
@@ -74,7 +74,7 @@
         "--enabled-components", 
         "az_cli,monitor,fleet,network,compute,detectors,advisor,inspektorgadget,kubectl"
       ],
-      "enabled": false
+      "enabled": true
     }
   }
 }
