@@ -1,7 +1,26 @@
 require("render-markdown").setup({
   enabled = true,
   file_types = { "markdown", "codecompanion", "opencode_output" },
-  anti_conceal = { enabled = false },
+  anti_conceal = {
+    enabled = true,  -- Reveal raw markdown when cursor is on the line
+    ignore = {
+      code_background = true,
+      sign = true,
+    },
+  },
+  link = {
+    enabled = true,
+    footnote = {
+      superscript = true,
+    },
+    -- Show the full URL when cursor is on the link
+    custom = {
+      web = { pattern = "^http", icon = " " },
+    },
+  },
+  indent = {
+    enabled = false,  -- Disable indent level indicators [1], [2], etc.
+  },
   code = {
     -- Turn on / off code block & inline code rendering
     enabled = true,

@@ -32,6 +32,9 @@ require("opencode").setup({
 			warning = true,
 			error = true,
 		},
+		buffer = {
+			enabled = false,
+		},
 	},
 	keymap = {
 		editor = {

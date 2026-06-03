@@ -43,7 +43,7 @@ require("lazy").setup({
 		dependencies = {
 			-- Automatically install LSPs to stdpath for neovim
 			{ "WhoIsSethDaniel/mason-tool-installer.nvim" },
-			{ "williamboman/mason.nvim", config = true },
+			{ "williamboman/mason.nvim",                  config = true },
 			"williamboman/mason-lspconfig.nvim",
 
 			-- Useful status updates for LSP
@@ -191,15 +191,8 @@ require("lazy").setup({
 		"MeanderingProgrammer/render-markdown.nvim",
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
 		config = function()
-		  require("plugin-configs.render-markdown")
+			require("plugin-configs.render-markdown")
 		end,
-	},
-	{
-		"numToStr/Comment.nvim",
-		opts = {
-			-- add any options here
-		},
-		lazy = false,
 	},
 	{
 		"windwp/nvim-autopairs",
@@ -380,12 +373,12 @@ require("lazy").setup({
 	-- 	end,
 	-- 	enabled = vim.fn.getenv("WSL_INTEROP") ~= vim.NIL,
 	-- },
-	 --  {
-		-- "NickvanDyke/opencode.nvim",
-		-- config = function()
-		--   require("plugin-configs.nvd-opencode")
-		-- end,
-	 --  },
+	--  {
+	-- "NickvanDyke/opencode.nvim",
+	-- config = function()
+	--   require("plugin-configs.nvd-opencode")
+	-- end,
+	--  },
 	{
 		"maskudo/devdocs.nvim",
 		config = function()
@@ -399,15 +392,15 @@ require("lazy").setup({
 			require("plugin-configs.nvim-jsonnet")
 		end,
 	},
-    {
+	{
 		"ravitemer/mcphub.nvim",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 		},
-		build = "bundled_build.lua",  -- Bundles `mcp-hub` binary along with the neovim plugin
+		build = "bundled_build.lua", -- Bundles `mcp-hub` binary along with the neovim plugin
 		config = function()
 			require("mcphub").setup({
-				use_bundled_binary = true,  -- Use local `mcp-hub` binary
+				use_bundled_binary = true, -- Use local `mcp-hub` binary
 			})
 		end,
 	}, -- {
@@ -418,11 +411,11 @@ require("lazy").setup({
 		},
 		ft = { "yaml", "yaml.helm-values" }, -- optional
 		keys = {
-			{ "<leader>yv", "<cmd>YAMLView<cr>", desc = "Yaml view" },
-			{ "<leader>yyk", "<cmd>YAMLYankKey +<cr>", desc = "Yank key" },
+			{ "<leader>yv",  "<cmd>YAMLView<cr>",        desc = "Yaml view" },
+			{ "<leader>yyk", "<cmd>YAMLYankKey +<cr>",   desc = "Yank key" },
 			{ "<leader>yyv", "<cmd>YAMLYankValue +<cr>", desc = "Yank value" },
-			{ "<leader>yyf", "<cmd>YAMLYank +<cr>", desc = "Yank full" },
-			{ "<leader>ys", "<cmd>YAMLSnacks<cr>", desc = "Yaml search" },
+			{ "<leader>yyf", "<cmd>YAMLYank +<cr>",      desc = "Yank full" },
+			{ "<leader>ys",  "<cmd>YAMLSnacks<cr>",      desc = "Yaml search" },
 		},
 		dependencies = {
 			{ "nvim-treesitter/nvim-treesitter" },
@@ -436,7 +429,7 @@ require("lazy").setup({
 		end,
 		lazy = true,
 		keys = {
-			{ mode = { "n", "x" }, "<leader>gly", "<cmd>GitLink<cr>", silent = true, noremap = true, desc = "Copy git permlink to clipboard" },
+			{ mode = { "n", "x" }, "<leader>gly", "<cmd>GitLink<cr>",  silent = true, noremap = true, desc = "Copy git permlink to clipboard" },
 			{ mode = { "n", "x" }, "<leader>glg", "<cmd>GitLink!<cr>", silent = true, noremap = true, desc = "Open git permlink in browser" },
 			-- blame
 			{
