@@ -126,6 +126,13 @@ require("lazy").setup({
 		end,
 	},
 	{
+		"coder/claudecode.nvim",
+		dependencies = { "folke/snacks.nvim" },
+		config = function()
+			require("plugin-configs.claudecode")
+		end,
+	},
+	{
 		"sindrets/diffview.nvim",
 		config = function()
 			require("plugin-configs.diffview")
