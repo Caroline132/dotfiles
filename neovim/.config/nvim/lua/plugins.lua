@@ -90,7 +90,22 @@ require("lazy").setup({
 		"navarasu/onedark.nvim",
 		priority = 1000,
 		config = function()
-			vim.cmd.colorscheme("onedark")
+			local home = os.getenv("HOME")
+			local theme_file = home .. "/.cache/theme-mode"
+			local style = "dark"
+			local f = io.open(theme_file, "r")
+			if f then
+				local val = f:read("*l")
+				f:close()
+				if val then val = val:match("^%s*(.-)%s*$") end
+				if val == "light" then style = "light" end
+			end
+			require("onedark").setup({
+				style = style,
+				toggle_style_key = false,
+				toggle_style_list = { "dark", "light" },
+			})
+			require("onedark").load()
 		end,
 	},
 

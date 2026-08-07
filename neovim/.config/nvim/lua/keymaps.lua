@@ -171,6 +171,16 @@ vim.keymap.set("x", "K", ":m '<-2<CR>gv=gv", { desc = "Shift selection up" })
 vim.api.nvim_set_keymap("x", "<", "<gv", { noremap = true, silent = true, desc = "Indent and keep selection" })
 vim.api.nvim_set_keymap("x", ">", ">gv", { noremap = true, silent = true, desc = "Indent and keep selection" })
 vim.keymap.set("n", "<leader>ts", "<Cmd>setlocal spell! spell?<CR>", { desc = "Toggle 'spell'" })
+vim.keymap.set("n", "<leader>th", function()
+	require("onedark").toggle()
+	local style = (vim.g.onedark_config or {}).style or "dark"
+	local home = os.getenv("HOME")
+	local f = io.open(home .. "/.cache/theme-mode", "w")
+	if f then
+		f:write(style)
+		f:close()
+	end
+end, { desc = "Toggle light/dark theme" })
 
 local toggle_diagnostic = function()
 	local buf_id = vim.api.nvim_get_current_buf()
