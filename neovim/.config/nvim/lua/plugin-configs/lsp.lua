@@ -84,7 +84,7 @@ local servers = {
   "marksman",
   "pyright",
   "rust-analyzer",
-  -- "terraform-ls",
+  "terraform-ls",
   "typescript-language-server",
   "vim-language-server",
   "yaml-language-server",
@@ -173,7 +173,23 @@ vim.lsp.config("marksman", {})
 vim.lsp.config("nushell", {})
 vim.lsp.config("pyright", {})
 vim.lsp.config("rust_analyzer", {})
--- vim.lsp.config("terraformls", {})
+vim.lsp.config("terraformls", {
+  -- Avoid using a large monorepo (.git) as root; terraform-ls indexes everything under root
+  root_markers = { ".terraform", ".terraform.lock.hcl" },
+  on_attach = function(client, _)
+    -- Semantic tokens on large .tf files freeze Neovim's main loop
+    client.server_capabilities.semanticTokensProvider = nil
+  end,
+  init_options = {
+    experimentalFeatures = { prefillRequiredFields = false },
+    indexing = {
+      ignoreDirectoryNames = { ".git", "node_modules", ".terragrunt-cache" },
+    },
+  },
+  flags = {
+    debounce_text_changes = 300,
+  },
+})
 vim.lsp.config("ts_ls", {})
 vim.lsp.config("vimls", {})
 vim.lsp.config("yamlls", {})
@@ -196,7 +212,7 @@ vim.lsp.enable("marksman")
 vim.lsp.enable("nushell")
 vim.lsp.enable("pyright")
 vim.lsp.enable("rust_analyzer")
--- vim.lsp.enable("terraformls")
+vim.lsp.enable("terraformls")
 vim.lsp.enable("ts_ls")
 vim.lsp.enable("vimls")
 vim.lsp.enable("yamlls")
