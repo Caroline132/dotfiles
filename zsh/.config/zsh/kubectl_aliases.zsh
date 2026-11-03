@@ -5,7 +5,6 @@ alias kcx="kubectx"
 alias kns="kubens"
 alias kbx="kubie ctx"
 alias kt="kubetail"
-alias ky="kyverno"
 # Execute a kubectl command against all namespaces
 alias kca='_kca(){ kubectl "$@" --all-namespaces;  unset -f _kca; }; _kca'
 

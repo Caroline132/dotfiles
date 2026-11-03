@@ -170,6 +170,11 @@ vim.lsp.config("lua_ls", {
   },
 })
 vim.lsp.config("marksman", {})
+vim.lsp.config("nu_lint", {
+  cmd = { "nu-lint", "lsp" },
+  filetypes = { "nu" },
+  root_markers = { ".git" },
+})
 vim.lsp.config("nushell", {})
 vim.lsp.config("pyright", {})
 vim.lsp.config("rust_analyzer", {})
@@ -209,6 +214,7 @@ vim.lsp.enable("jsonls")
 vim.lsp.enable("jsonnet_ls")
 vim.lsp.enable("lua_ls")
 vim.lsp.enable("marksman")
+vim.lsp.enable("nu_lint")
 vim.lsp.enable("nushell")
 vim.lsp.enable("pyright")
 vim.lsp.enable("rust_analyzer")

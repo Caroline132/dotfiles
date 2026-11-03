@@ -234,8 +234,6 @@ bindkey '\ec' fzf-dir
 # export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
 export RPS1="$(vi_mode_prompt_info)"
 export RIPGREP_CONFIG_PATH="$HOME/.config/.ripgreprc"
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
 export PATH="/home/caro/.local/share/bob/nvim-bin:$PATH"
 export NODE_PATH="$(npm config get prefix)/lib/node_modules"
 export NODE_BIN="$(npm config get prefix)/bin"
@@ -247,8 +245,6 @@ export BROWSER='/mnt/c/Program Files/Firefox Developer Edition/firefox.exe'
 source <(kubectl completion zsh)
 source <(kustomize completion zsh)
 source <(velero completion zsh)
-source <(argo completion zsh)
-source <(kyverno completion zsh)
 source <(trivy completion zsh)
 [ -f ~/.zshsecretenv ] && source ~/.zshsecretenv
 eval "$(direnv hook zsh)"
