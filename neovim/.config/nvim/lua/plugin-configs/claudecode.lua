@@ -1,6 +1,32 @@
 -- claudecode.nvim configuration
 -- https://github.com/coder/claudecode.nvim
 
+-- Fix upstream port probing: libuv's tcp:bind() succeeds even when the port is
+-- in use (EADDRINUSE is only reported by listen()), so the plugin's check never
+-- detects busy ports. Probe with bind + listen instead, and skip ports reserved
+-- by other tools (mcphub uses 37373).
+local reserved_ports = { [37373] = true }
+local tcp = require("claudecode.server.tcp")
+tcp.find_available_port = function(min_port, max_port)
+	math.randomseed(vim.uv.hrtime() + vim.fn.getpid())
+	local tried = {}
+	for _ = 1, 200 do
+		local port = math.random(min_port, max_port)
+		if not tried[port] and not reserved_ports[port] then
+			tried[port] = true
+			local probe = vim.uv.new_tcp()
+			if probe then
+				local ok = probe:bind("127.0.0.1", port) and probe:listen(1, function() end)
+				probe:close()
+				if ok then
+					return port
+				end
+			end
+		end
+	end
+	return nil
+end
+
 require("claudecode").setup({
 	-- Server Configuration
 	port_range = { min = 10000, max = 65535 },
